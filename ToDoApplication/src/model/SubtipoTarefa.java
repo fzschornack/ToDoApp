@@ -6,6 +6,16 @@ package model;
 */
 public class SubtipoTarefa extends TiposDeTarefaComposite{
 
+        private long idSubtipoTarefa;
+
+        public long getIdSubtipoTarefa() {
+            return idSubtipoTarefa;
+        }
+
+        public void setIdSubtipoTarefa(long idSubtipoTarefa) {
+            this.idSubtipoTarefa = idSubtipoTarefa;
+        }        
+        
 	public String getNome() {
 		return nome;
 	}

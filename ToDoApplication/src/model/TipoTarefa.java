@@ -8,9 +8,19 @@ import java.util.ArrayList;
 */
 public class TipoTarefa extends TiposDeTarefaComposite
 {
-
+        
+        private long idTipoTarefa;
+        
 	private ArrayList<SubtipoTarefa> subtipos;
 	
+        public long getIdTipoTarefa() {
+        return idTipoTarefa;
+        }
+
+        public void setIdTipoTarefa(long idTipoTarefa) {
+            this.idTipoTarefa = idTipoTarefa;
+        }
+        
 	public void adicionarSubtipo(SubtipoTarefa subtipo) {
 		this.subtipos.add(subtipo);
 	}

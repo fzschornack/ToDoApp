@@ -21,7 +21,8 @@ public class Tarefa {
 	private boolean tarefaUrgente;
 	private boolean tarefaImportante;
 	private TiposDeTarefaComposite tipo;
-	public long getId() {
+	
+        public long getId() {
 		return id;
 	}
 	public void setId(long id) {

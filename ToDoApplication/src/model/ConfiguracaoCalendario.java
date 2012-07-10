@@ -9,14 +9,23 @@ import java.util.ArrayList;
 */
 public class ConfiguracaoCalendario {
 
+        private long idConfiguracaoCalendario;
 	private ArrayList<Boolean> diasUteis;
 	private ArrayList<Boolean> horarioAlocacaoTarefas;
 	private Time slotTempo;
-	
-	public ConfiguracaoCalendario() {
+
+        public ConfiguracaoCalendario() {
 		this.diasUteis = new ArrayList<Boolean>(7);
 		this.horarioAlocacaoTarefas = new ArrayList<Boolean>(24);
 	}
+        
+        public long getIdConfiguracaoCalendario() {
+            return idConfiguracaoCalendario;
+        }
+
+        public void setIdConfiguracaoCalendario(long idConfiguracaoCalendario) {
+            this.idConfiguracaoCalendario = idConfiguracaoCalendario;
+        }
 
 	public ArrayList<Boolean> getDiasUteis() {
 		return diasUteis;
