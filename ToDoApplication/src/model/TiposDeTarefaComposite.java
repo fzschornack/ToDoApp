@@ -14,4 +14,8 @@ package model;
 */
 public abstract class TiposDeTarefaComposite{
 	String nome;
+        
+        public abstract String getNome();
+        
+        public abstract void setNome(String nome);
 }

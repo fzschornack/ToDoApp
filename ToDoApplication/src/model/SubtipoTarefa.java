@@ -4,7 +4,7 @@ package model;
 *
 * @author Felipe Zschornack
 */
-public class SubtipoTarefa extends TiposDeTarefaComposite{
+public class SubtipoTarefa extends TiposDeTarefaComposite {
 
         private long idSubtipoTarefa;
 
