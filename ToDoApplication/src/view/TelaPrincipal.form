@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jTabbedPane1" alignment="1" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="calendario">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Calendario">
+                <Property name="tabTitle" type="java.lang.String" value="Calendario"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+        </Container>
+        <Container class="javax.swing.JPanel" name="adiconarTarefa">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="AdicionarTarefa">
+                <Property name="tabTitle" type="java.lang.String" value="AdicionarTarefa"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnSalvarAdiconarTarefas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                      <Component id="lblDadosDaTarefa" pref="372" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblDataPrevistaInicio" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDescriçao" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDataPrevistaFim" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDuraçaoTotalPrevista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDuraçaoMaximaExecuçaoPorDia" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtDataPrevistaInicio" max="32767" attributes="0"/>
+                                  <Component id="txtDescriçao" max="32767" attributes="0"/>
+                                  <Component id="txtDataPrevistaFim" max="32767" attributes="0"/>
+                                  <Component id="txtDuraçaoTotalPrevista" max="32767" attributes="0"/>
+                                  <Component id="txtDuraçaoMaximaExecuçaoPorDia" pref="162" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jCBImportante" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCBUrgente" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnTipo" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDadosDaTarefa" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDescriçao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDescriçao" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDataPrevistaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDataPrevistaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDataPrevistaFim" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDataPrevistaFim" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDuraçaoTotalPrevista" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDuraçaoTotalPrevista" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDuraçaoMaximaExecuçaoPorDia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDuraçaoMaximaExecuçaoPorDia" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jCBUrgente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jCBImportante" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Component id="btnTipo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="btnSalvarAdiconarTarefas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblDescri&#xe7;ao">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Descri&#xe7;ao"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtDescri&#xe7;ao">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDataPrevistaInicio">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Data prevista inicio"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtDataPrevistaInicio">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDataPrevistaFim">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Data prevista fim"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtDataPrevistaFim">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDura&#xe7;aoTotalPrevista">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Dura&#xe7;ao total prevista"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtDura&#xe7;aoTotalPrevista">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDura&#xe7;aoMaximaExecu&#xe7;aoPorDia">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Dura&#xe7;ao maxima execu&#xe7;ao por dia"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtDura&#xe7;aoMaximaExecu&#xe7;aoPorDia">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnSalvarAdiconarTarefas">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Salvar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnTipo">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tipo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDadosDaTarefa">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="24" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Dados da tarefa"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBUrgente">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Urgente"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCBImportante">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Importante"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="configurarCalendario">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Configurar calendario">
+                <Property name="tabTitle" type="java.lang.String" value="Configurar calendario"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="segunda" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="terça" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="quarta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="quinta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="sexta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="sabado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="domingo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblSlotDeTempo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtSlotDeTempo" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="JCB10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB09" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB08" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB07" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB06" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB00" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB01" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB02" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB03" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB04" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB05" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="JCB23" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB19" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB20" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB21" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB22" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB15" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB16" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB17" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB18" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblDiasUteis" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="lblHorarios" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jRBFifo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRBSjf" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEscalonamento" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblDataBase" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btnSalvarConfigurarCalendario" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtDataBase" min="-2" pref="70" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                              <Component id="lblDadosCalendario" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="lblDiasUteis" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblDadosCalendario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblEscalonamento" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblHorarios" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="segunda" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB00" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB12" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="terça" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB01" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="quarta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB02" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB14" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="quinta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB03" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB15" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="sexta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB04" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB16" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="sabado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB05" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB17" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="domingo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB06" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JCB18" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="JCB07" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="JCB08" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="JCB09" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="JCB10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="JCB11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JCB23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      <Component id="lblSlotDeTempo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtSlotDeTempo" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="jRBFifo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jRBSjf" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblDataBase" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtDataBase" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <Component id="btnSalvarConfigurarCalendario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblDiasUteis">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Dias uteis"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="segunda">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Segunda"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="ter&#xe7;a">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ter&#xe7;a"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="quarta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Quarta"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="quinta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Quinta"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="sexta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sexta"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="sabado">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sabado"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="domingo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Domingo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblHorarios">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Horarios"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB00">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="00:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB01">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="01:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB02">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="02:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB03">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="03:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB04">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="04:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB05">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="05:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB06">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="06:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB07">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="07:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB08">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="08:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB09">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="09:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB10">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="10:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB11">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="11:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="12:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="13:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="14:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="15:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="16:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB17">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="17:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB18">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="18:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB19">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="19:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB20">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="20:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB21">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="21:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB22">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="22:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="JCB23">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="23:00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblSlotDeTempo">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Slot de tempo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtSlotDeTempo">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblEscalonamento">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Escalonamento"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="jRBFifo">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="FIFO"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="jRBSjf">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="SJF"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDataBase">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Data base"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtDataBase">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDadosCalendario">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="24" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Dados calendario"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnSalvarConfigurarCalendario">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Salvar"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
