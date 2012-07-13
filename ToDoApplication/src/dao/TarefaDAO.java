@@ -22,8 +22,8 @@ public class TarefaDAO {
         ConnectorSingleton.update("INSERT INTO tarefa (descricao, data_prevista_inicio,"
                 + "data_real_inicio,data_prevista_fim, data_real_fim, duracao_total_prevista,"
                 + "duracao_total_real, duracao_maxima_execucao_dia, tarefa_urgente,"
-                + "tarefa_importante, arquivo_to_do_application_idarquivo_to_do_application,"
-                + "tipo)"
+                + "tarefa_importante, tipo,"
+                + "dia_iddia)"
                 + " VALUES ('" 
                 + tarefa.getDescricao()+ "', "
                 + new java.sql.Date(tarefa.getDataPrevistaInicio().getTime()) + ","
@@ -34,9 +34,9 @@ public class TarefaDAO {
                 + tarefa.getDuracaoTotalReal() + ","
                 + tarefa.getDuracaoMaximaExecucaoDia() + ","
                 + tarefa.isTarefaUrgente() + ","
-                + tarefa.isTarefaImportante() + ","
-                + tarefa.getArquivoToDoApplication().getIdArquivoToDoApplication() + ",'"
-                + tarefa.getTipo().getNome() + "'); " );   
+                + tarefa.isTarefaImportante() + ",'"
+                + tarefa.getTipo().getNome() + "',"
+                + tarefa.getDia().getIdDia() + "); " );   
                 
         ConnectorSingleton.close();    
     }
@@ -51,8 +51,8 @@ public class TarefaDAO {
             {
                 tarefa = new Tarefa();
                 tarefa.setIdTarefa(idTarefa);
-                tarefa.setNomeTarefa(resultSet.getString("nome_tarefa"));
                 tarefa.setDescricao(resultSet.getString("descricao"));
+                tarefa.setDataPrevistaInicio(resultSet.getDate("data_prevista_inicio"));
                 tarefa.setStatus(resultSet.getInt("status"));
                 tarefa.setInicioTarefa(resultSet.getDate("data_inicio"));
                 tarefa.setFimTarefa(resultSet.getDate("data_termino"));

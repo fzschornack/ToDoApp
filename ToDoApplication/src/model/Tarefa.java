@@ -21,7 +21,24 @@ public class Tarefa {
     private boolean tarefaUrgente;
     private boolean tarefaImportante;
     private TiposDeTarefaComposite tipo;
-    private ArquivoToDoApplication arquivoToDoApplication;
+    private int prioridade;
+    private Dia dia;
+
+    public Tarefa(String descricao, Date dataPrevistaInicio, Date dataPrevistaFim, int duracaoTotalPrevista, int duracaoMaximaExecucaoDia, boolean tarefaUrgente, boolean tarefaImportante, TiposDeTarefaComposite tipo, int prioridade, Dia dia) {
+        this.descricao = descricao;
+        this.dataPrevistaInicio = dataPrevistaInicio;
+        this.dataPrevistaFim = dataPrevistaFim;
+        this.duracaoTotalPrevista = duracaoTotalPrevista;
+        this.duracaoMaximaExecucaoDia = duracaoMaximaExecucaoDia;
+        this.tarefaUrgente = tarefaUrgente;
+        this.tarefaImportante = tarefaImportante;
+        this.tipo = tipo;
+        this.prioridade = prioridade;
+        this.dia = dia;
+    }
+
+    public Tarefa() {
+    }
 
     public long getIdTarefa() {
             return idTarefa;
@@ -96,19 +113,33 @@ public class Tarefa {
     public void setTipo(TiposDeTarefaComposite tipo) {
             this.tipo = tipo;
     }
-
+    
     /**
-     * @return the arquivoToDoApplication
+     * @return the prioridade
      */
-    public ArquivoToDoApplication getArquivoToDoApplication() {
-        return arquivoToDoApplication;
+    public int getPrioridade() {
+        return prioridade;
     }
 
     /**
-     * @param arquivoToDoApplication the arquivoToDoApplication to set
+     * @param prioridade the prioridade to set
      */
-    public void setArquivoToDoApplication(ArquivoToDoApplication arquivoToDoApplication) {
-        this.arquivoToDoApplication = arquivoToDoApplication;
+    public void setPrioridade(int prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    /**
+     * @return the dia
+     */
+    public Dia getDia() {
+        return dia;
+    }
+
+    /**
+     * @param dia the dia to set
+     */
+    public void setDia(Dia dia) {
+        this.dia = dia;
     }
 	
 	
