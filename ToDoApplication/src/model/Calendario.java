@@ -17,10 +17,7 @@ public class Calendario {
     private long idCalendario;
     private ConfiguracaoCalendario configCal;
     private HashMap<Date,Dia> dias;
-
-    public Calendario(ConfiguracaoCalendario configCal) {
-        this.configCal = configCal;
-    }
+    private ArrayList<TipoTarefa> tipos;
     
     /**
      * @return the idCalendario
@@ -62,6 +59,20 @@ public class Calendario {
      */
     public void setConfigCal(ConfiguracaoCalendario configCal) {
         this.configCal = configCal;
+    }
+
+    /**
+     * @return the tipos
+     */
+    public ArrayList<TipoTarefa> getTipos() {
+        return tipos;
+    }
+
+    /**
+     * @param tipos the tipos to set
+     */
+    public void setTipos(ArrayList<TipoTarefa> tipos) {
+        this.tipos = tipos;
     }
     
     

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import model.SubtipoTarefa;
 import model.Tarefa;
 import model.TipoTarefa;
+import model.TiposDeTarefaComposite;
 
 /**
  *
@@ -53,10 +54,16 @@ public class TarefaDAO {
                 tarefa.setIdTarefa(idTarefa);
                 tarefa.setDescricao(resultSet.getString("descricao"));
                 tarefa.setDataPrevistaInicio(resultSet.getDate("data_prevista_inicio"));
-                tarefa.setStatus(resultSet.getInt("status"));
-                tarefa.setInicioTarefa(resultSet.getDate("data_inicio"));
-                tarefa.setFimTarefa(resultSet.getDate("data_termino"));
-                tarefa.setResponsavel(resultSet.getLong("idresponsavel"));
+                tarefa.setDataPrevistaFim(resultSet.getDate("data_prevista_fim"));
+                tarefa.setDataRealInicio(resultSet.getDate("data_real_inicio"));
+                tarefa.setDataRealFim(resultSet.getDate("data_real_fim"));
+                tarefa.setDuracaoTotalPrevista(resultSet.getInt("duracao_total_prevista"));
+                tarefa.setDuracaoTotalReal(resultSet.getInt("duracao_total_real"));
+                tarefa.setDuracaoMaximaExecucaoDia(resultSet.getInt("duracao_maxima_execucao_dia"));
+                tarefa.setTarefaImportante(resultSet.getBoolean("tarefa_importante"));
+                tarefa.setTarefaUrgente(resultSet.getBoolean("tarefa_urgente"));
+                String tipo = resultSet.getString("tipo");
+                for( t: )
                 
             }
         }catch(Exception e)

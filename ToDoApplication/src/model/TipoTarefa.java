@@ -10,6 +10,11 @@ public class TipoTarefa extends TiposDeTarefaComposite
 {
         
         private long idTipoTarefa;
+        private Calendario calendario;
+
+        public TipoTarefa(Calendario calendario) {
+            this.calendario = calendario;
+        }
         
 	private ArrayList<SubtipoTarefa> subtipos;
 	
@@ -41,6 +46,20 @@ public class TipoTarefa extends TiposDeTarefaComposite
 	public void setSubtipos(ArrayList<SubtipoTarefa> subtipos) {
 		this.subtipos = subtipos;
 	}
+
+    /**
+     * @return the calendario
+     */
+    public Calendario getCalendario() {
+        return calendario;
+    }
+
+    /**
+     * @param calendario the calendario to set
+     */
+    public void setCalendario(Calendario calendario) {
+        this.calendario = calendario;
+    }
 	
 	
 	
