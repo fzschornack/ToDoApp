@@ -17,6 +17,9 @@ public class TipoTarefa extends TiposDeTarefaComposite
         }
         
 	private ArrayList<SubtipoTarefa> subtipos;
+
+        public TipoTarefa() {
+        }
 	
         public long getIdTipoTarefa() {
         return idTipoTarefa;

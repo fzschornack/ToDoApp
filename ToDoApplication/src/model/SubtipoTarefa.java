@@ -7,6 +7,7 @@ package model;
 public class SubtipoTarefa extends TiposDeTarefaComposite {
 
         private long idSubtipoTarefa;
+        private long idTipoTarefa;
 
         public long getIdSubtipoTarefa() {
             return idSubtipoTarefa;
@@ -23,5 +24,19 @@ public class SubtipoTarefa extends TiposDeTarefaComposite {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+    /**
+     * @return the idTipoTarefa
+     */
+    public long getIdTipoTarefa() {
+        return idTipoTarefa;
+    }
+
+    /**
+     * @param idTipoTarefa the idTipoTarefa to set
+     */
+    public void setIdTipoTarefa(long idTipoTarefa) {
+        this.idTipoTarefa = idTipoTarefa;
+    }
 	
 }

@@ -21,12 +21,10 @@ public class ConfiguracaoCalendario {
             this.slotTempo = slotTempo;
             this.calendario = calendario;
         }
-        
-        
-        
+               
         public ConfiguracaoCalendario() {
-		this.diasUteis = new ArrayList<Boolean>(7);
-		this.horarioAlocacaoTarefas = new ArrayList<Boolean>(24);
+            this.diasUteis = new ArrayList<Boolean>(7);
+            this.horarioAlocacaoTarefas = new ArrayList<Boolean>(24);
 	}
         
         public long getIdConfiguracaoCalendario() {
