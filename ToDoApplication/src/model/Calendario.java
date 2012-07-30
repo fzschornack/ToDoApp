@@ -16,8 +16,15 @@ public class Calendario {
     
     private long idCalendario;
     private ConfiguracaoCalendario configCal;
-    private HashMap<Date,Dia> dias;
+    private ArrayList<Dia> dias;
     private ArrayList<TipoTarefa> tipos;
+
+    public Calendario() {
+        this.dias = new ArrayList<Dia>();
+        this.tipos = new ArrayList<TipoTarefa>();
+    }
+    
+    
     
     /**
      * @return the idCalendario
@@ -36,14 +43,14 @@ public class Calendario {
     /**
      * @return the dias
      */
-    public HashMap<Date,Dia> getDias() {
+    public ArrayList<Dia> getDias() {
         return dias;
     }
 
     /**
      * @param dias the dias to set
      */
-    public void setDias(HashMap<Date,Dia> dias) {
+    public void setDias(ArrayList<Dia> dias) {
         this.dias = dias;
     }
 

@@ -4,7 +4,29 @@
  */
 package view;
 
+import controller.AdicionarTarefaController;
+import controller.TelaPrincipalController;
+import dao.TipoTarefaDAO;
 import java.awt.BorderLayout;
+import java.sql.Date;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import model.Calendario;
+import model.SubtipoTarefa;
+import model.TipoTarefa;
 import org.jdesktop.swingx.JXDatePicker;
 
 /**
@@ -13,11 +35,19 @@ import org.jdesktop.swingx.JXDatePicker;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    
+    Calendario calendarioPrincipal;
+    TelaPrincipalController telaPrincipalController;
+    AdicionarTarefaController adicionarTarefaController;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
+        telaPrincipalController = new TelaPrincipalController(this);
+        adicionarTarefaController = new AdicionarTarefaController();
+        calendarioPrincipal = new Calendario();
         initComponents();
+        telaPrincipalController.inicializarCalendario();
     }
 
     /**
@@ -42,7 +72,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         configurarCalendario = new javax.swing.JPanel();
         lblDiasUteis = new javax.swing.JLabel();
         segunda = new javax.swing.JCheckBox();
-        terça = new javax.swing.JCheckBox();
+        terca = new javax.swing.JCheckBox();
         quarta = new javax.swing.JCheckBox();
         quinta = new javax.swing.JCheckBox();
         sexta = new javax.swing.JCheckBox();
@@ -83,37 +113,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblDadosCalendario = new javax.swing.JLabel();
         btnSalvarConfigurarCalendario = new javax.swing.JButton();
         adiconarTarefa = new javax.swing.JPanel();
-        lblDescriçao = new javax.swing.JLabel();
-        txtDescriçao = new javax.swing.JTextField();
+        lblDescricao = new javax.swing.JLabel();
+        txtDescricao = new javax.swing.JTextField();
         lblDataPrevistaInicio = new javax.swing.JLabel();
-        txtDataPrevistaInicio = new javax.swing.JTextField();
         lblDataPrevistaFim = new javax.swing.JLabel();
-        txtDataPrevistaFim = new javax.swing.JTextField();
-        lblDuraçaoTotalPrevista = new javax.swing.JLabel();
-        txtDuraçaoTotalPrevista = new javax.swing.JTextField();
-        lblDuraçaoMaximaExecuçaoPorDia = new javax.swing.JLabel();
-        txtDuraçaoMaximaExecuçaoPorDia = new javax.swing.JTextField();
+        lblDuracaoTotalPrevista = new javax.swing.JLabel();
+        txtDuracaoTotalPrevista = new javax.swing.JTextField();
+        lblDuracaoMaximaExecucaoPorDia = new javax.swing.JLabel();
+        txtDuracaoMaximaExecucaoPorDia = new javax.swing.JTextField();
         btnSalvarAdiconarTarefas = new javax.swing.JButton();
-        btnTipo = new javax.swing.JButton();
         lblDadosDaTarefa = new javax.swing.JLabel();
         jCBUrgente = new javax.swing.JCheckBox();
         jCBImportante = new javax.swing.JCheckBox();
+        ftxfDataPrevistaInicio = new javax.swing.JFormattedTextField();
+        ftxfDataPrevistaFim = new javax.swing.JFormattedTextField();
+        cbTiposTarefa = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        btnAdicionarTipo = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        mbMenu = new javax.swing.JMenuBar();
+        mOpcoes = new javax.swing.JMenu();
+        miTarefasConcluidas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciador de Tarefas - Xoxó&Sid");
         setLocationByPlatform(true);
         setResizable(false);
 
-        listTarefas.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        listTarefas.setModel(new listTarefasModel(new Date(System.currentTimeMillis())));
         jScrollPane2.setViewportView(listTarefas);
 
         btnConcluirTarefa.setText("Concluir Tarefa");
 
         btnEditarTarefa.setText("Editar");
+        btnEditarTarefa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarTarefaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTarefasLayout = new javax.swing.GroupLayout(pnlTarefas);
         pnlTarefas.setLayout(pnlTarefasLayout);
@@ -141,12 +178,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        JXDatePicker dpCalendario = new JXDatePicker();
+        dpCalendario = new JXDatePicker();
         pnlCalendarioPrincipal.setLayout(new java.awt.BorderLayout());
 
         pnlCalendarioPrincipal.add(dpCalendario.getMonthView(), java.awt.BorderLayout.CENTER);
 
         btnExibirTarefas.setText("Exibir Tarefas");
+        btnExibirTarefas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExibirTarefasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlExibirTarefasLayout = new javax.swing.GroupLayout(pnlExibirTarefas);
         pnlExibirTarefas.setLayout(pnlExibirTarefasLayout);
@@ -170,7 +212,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         calendarioLayout.setHorizontalGroup(
             calendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(calendarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(calendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlExibirTarefas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlCalendarioPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -200,7 +242,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         segunda.setText("Segunda");
 
-        terça.setText("Terça");
+        terca.setText("Terça");
 
         quarta.setText("Quarta");
 
@@ -292,7 +334,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lblDadosCalendario))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configurarCalendarioLayout.createSequentialGroup()
-                        .addGap(0, 467, Short.MAX_VALUE)
+                        .addGap(0, 524, Short.MAX_VALUE)
                         .addComponent(btnSalvarConfigurarCalendario))
                     .addGroup(configurarCalendarioLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -300,7 +342,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addComponent(txtSlotDeTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblSlotDeTempo)
                             .addComponent(segunda)
-                            .addComponent(terça)
+                            .addComponent(terca)
                             .addComponent(quarta)
                             .addComponent(quinta)
                             .addComponent(sexta)
@@ -427,7 +469,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(segunda)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(terça)
+                                .addComponent(terca)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(quarta)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -442,14 +484,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                 .addComponent(lblSlotDeTempo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtSlotDeTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 72, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Configurar Calendário", configurarCalendario);
 
-        lblDescriçao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblDescriçao.setText("Descrição:");
+        lblDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDescricao.setText("Descrição:");
 
         lblDataPrevistaInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDataPrevistaInicio.setText("Data prevista para o início da tarefa:");
@@ -457,17 +499,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblDataPrevistaFim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDataPrevistaFim.setText("Data prevista para o fim da tarefa:");
 
-        lblDuraçaoTotalPrevista.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblDuraçaoTotalPrevista.setText("Duraçao total prevista (em minutos):");
+        lblDuracaoTotalPrevista.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDuracaoTotalPrevista.setText("Duraçao total prevista (em minutos):");
 
-        lblDuraçaoMaximaExecuçaoPorDia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblDuraçaoMaximaExecuçaoPorDia.setText("Duraçao máxima de execução por dia (em minutos):");
+        lblDuracaoMaximaExecucaoPorDia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDuracaoMaximaExecucaoPorDia.setText("Duraçao máxima de execução por dia (em minutos):");
 
         btnSalvarAdiconarTarefas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalvarAdiconarTarefas.setText("Adicionar Tarefa");
-
-        btnTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnTipo.setText("Tipo da Tarefa");
+        btnSalvarAdiconarTarefas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarAdiconarTarefasActionPerformed(evt);
+            }
+        });
 
         lblDadosDaTarefa.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblDadosDaTarefa.setText("Dados da tarefa");
@@ -478,38 +522,95 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jCBImportante.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBImportante.setText("Tarefa Importante");
 
+        try {
+            ftxfDataPrevistaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            ftxfDataPrevistaFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        cbTiposTarefa.setModel(new comboBoxTipoTarefaModel());
+        ArrayList<TipoTarefa> tipos;
+        tipos = TipoTarefaDAO.getAll();
+        int cont = 0;
+        for(TipoTarefa t: tipos) {
+            cbTiposTarefa.insertItemAt(t.getNome(),cont);
+            cont++;
+            for(SubtipoTarefa s: t.getSubtipos()) {
+                cbTiposTarefa.insertItemAt(s.getNome(),cont);
+                cont++;
+            }
+        }
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Tipo da Tarefa");
+
+        btnAdicionarTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnAdicionarTipo.setText("Adicionar Novo Tipo");
+        btnAdicionarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarTipoActionPerformed(evt);
+            }
+        });
+
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout adiconarTarefaLayout = new javax.swing.GroupLayout(adiconarTarefa);
         adiconarTarefa.setLayout(adiconarTarefaLayout);
         adiconarTarefaLayout.setHorizontalGroup(
             adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adiconarTarefaLayout.createSequentialGroup()
+                .addContainerGap(519, Short.MAX_VALUE)
+                .addComponent(btnSalvarAdiconarTarefas)
+                .addContainerGap())
             .addGroup(adiconarTarefaLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDadosDaTarefa, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
                     .addGroup(adiconarTarefaLayout.createSequentialGroup()
+                        .addComponent(ftxfDataPrevistaFim, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(adiconarTarefaLayout.createSequentialGroup()
+                            .addComponent(ftxfDataPrevistaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
                         .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDuraçaoMaximaExecuçaoPorDia)
-                            .addComponent(txtDescriçao, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDescriçao)
-                            .addComponent(lblDataPrevistaInicio)
-                            .addComponent(txtDataPrevistaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDataPrevistaFim)
-                            .addComponent(txtDataPrevistaFim, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDuraçaoTotalPrevista)
-                            .addComponent(txtDuraçaoTotalPrevista, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDadosDaTarefa, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
                             .addGroup(adiconarTarefaLayout.createSequentialGroup()
-                                .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnTipo)
-                                    .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtDuraçaoMaximaExecuçaoPorDia, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCBUrgente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCBImportante)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adiconarTarefaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvarAdiconarTarefas)
-                .addContainerGap())
+                                .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDuracaoMaximaExecucaoPorDia)
+                                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDescricao)
+                                    .addComponent(lblDataPrevistaInicio)
+                                    .addComponent(lblDataPrevistaFim)
+                                    .addComponent(lblDuracaoTotalPrevista)
+                                    .addComponent(txtDuracaoTotalPrevista, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(adiconarTarefaLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(adiconarTarefaLayout.createSequentialGroup()
+                                                .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(txtDuracaoMaximaExecucaoPorDia, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jCBUrgente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jCBImportante))
+                                            .addGroup(adiconarTarefaLayout.createSequentialGroup()
+                                                .addComponent(cbTiposTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnAdicionarTipo)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnAtualizar))
+                                            .addComponent(jLabel1))))
+                                .addGap(0, 223, Short.MAX_VALUE))))))
         );
         adiconarTarefaLayout.setVerticalGroup(
             adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,37 +618,51 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblDadosDaTarefa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblDescriçao)
+                .addComponent(lblDescricao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDescriçao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDataPrevistaInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDataPrevistaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftxfDataPrevistaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDataPrevistaFim)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDataPrevistaFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftxfDataPrevistaFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDuraçaoTotalPrevista)
+                .addComponent(lblDuracaoTotalPrevista)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDuraçaoTotalPrevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDuracaoTotalPrevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(lblDuraçaoMaximaExecuçaoPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblDuracaoMaximaExecucaoPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(txtDuraçaoMaximaExecuçaoPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDuracaoMaximaExecucaoPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBUrgente)
                     .addComponent(jCBImportante))
-                .addGap(18, 18, 18)
-                .addComponent(btnTipo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(adiconarTarefaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbTiposTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdicionarTipo)
+                    .addComponent(btnAtualizar))
+                .addGap(22, 22, 22)
                 .addComponent(btnSalvarAdiconarTarefas)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("AdicionarTarefa", adiconarTarefa);
+
+        mOpcoes.setText("Opções");
+
+        miTarefasConcluidas.setText("Exibir Tarefas Concluídas");
+        mOpcoes.add(miTarefasConcluidas);
+
+        mbMenu.add(mOpcoes);
+
+        setJMenuBar(mbMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -569,6 +684,38 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnExibirTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirTarefasActionPerformed
+        telaPrincipalController.exibirTarefas();
+    }//GEN-LAST:event_btnExibirTarefasActionPerformed
+
+    private void btnEditarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarTarefaActionPerformed
+        telaPrincipalController.editarTarefa();
+    }//GEN-LAST:event_btnEditarTarefaActionPerformed
+
+    private void btnSalvarAdiconarTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAdiconarTarefasActionPerformed
+        adicionarTarefaController.adicionarTarefa(this);
+    }//GEN-LAST:event_btnSalvarAdiconarTarefasActionPerformed
+
+    private void btnAdicionarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTipoActionPerformed
+        AdicionarNovoTipo telaAdicionarNovoTipo = new AdicionarNovoTipo();
+        telaAdicionarNovoTipo.setVisible(true);
+    }//GEN-LAST:event_btnAdicionarTipoActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        cbTiposTarefa.removeAllItems();
+        ArrayList<TipoTarefa> tipos;
+        tipos = TipoTarefaDAO.getAll();
+        int cont = 0;
+        for(TipoTarefa t: tipos) {
+            cbTiposTarefa.insertItemAt(t.getNome(),cont);
+            cont++;
+            for(SubtipoTarefa s: t.getSubtipos()) {
+                cbTiposTarefa.insertItemAt(s.getNome(),cont);
+                cont++;
+            }
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -610,6 +757,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    private JXDatePicker dpCalendario;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox JCB00;
     private javax.swing.JCheckBox JCB01;
@@ -636,17 +786,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox JCB22;
     private javax.swing.JCheckBox JCB23;
     private javax.swing.JPanel adiconarTarefa;
+    private javax.swing.JButton btnAdicionarTipo;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnConcluirTarefa;
     private javax.swing.JButton btnEditarTarefa;
     private javax.swing.JButton btnExibirTarefas;
     private javax.swing.JButton btnSalvarAdiconarTarefas;
     private javax.swing.JButton btnSalvarConfigurarCalendario;
-    private javax.swing.JButton btnTipo;
     private javax.swing.JPanel calendario;
+    private javax.swing.JComboBox cbTiposTarefa;
     private javax.swing.JPanel configurarCalendario;
     private javax.swing.JCheckBox domingo;
+    private javax.swing.JFormattedTextField ftxfDataPrevistaFim;
+    private javax.swing.JFormattedTextField ftxfDataPrevistaInicio;
     private javax.swing.JCheckBox jCBImportante;
     private javax.swing.JCheckBox jCBUrgente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRBFifo;
     private javax.swing.JRadioButton jRBSjf;
     private javax.swing.JScrollPane jScrollPane2;
@@ -656,14 +811,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblDataBase;
     private javax.swing.JLabel lblDataPrevistaFim;
     private javax.swing.JLabel lblDataPrevistaInicio;
-    private javax.swing.JLabel lblDescriçao;
+    private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblDiasUteis;
-    private javax.swing.JLabel lblDuraçaoMaximaExecuçaoPorDia;
-    private javax.swing.JLabel lblDuraçaoTotalPrevista;
+    private javax.swing.JLabel lblDuracaoMaximaExecucaoPorDia;
+    private javax.swing.JLabel lblDuracaoTotalPrevista;
     private javax.swing.JLabel lblEscalonamento;
     private javax.swing.JLabel lblHorarios;
     private javax.swing.JLabel lblSlotDeTempo;
     private javax.swing.JList listTarefas;
+    private javax.swing.JMenu mOpcoes;
+    private javax.swing.JMenuBar mbMenu;
+    private javax.swing.JMenuItem miTarefasConcluidas;
     private javax.swing.JPanel pnlCalendarioPrincipal;
     private javax.swing.JPanel pnlExibirTarefas;
     private javax.swing.JPanel pnlTarefas;
@@ -672,13 +830,326 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox sabado;
     private javax.swing.JCheckBox segunda;
     private javax.swing.JCheckBox sexta;
-    private javax.swing.JCheckBox terça;
+    private javax.swing.JCheckBox terca;
     private javax.swing.JTextField txtDataBase;
-    private javax.swing.JTextField txtDataPrevistaFim;
-    private javax.swing.JTextField txtDataPrevistaInicio;
-    private javax.swing.JTextField txtDescriçao;
-    private javax.swing.JTextField txtDuraçaoMaximaExecuçaoPorDia;
-    private javax.swing.JTextField txtDuraçaoTotalPrevista;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtDuracaoMaximaExecucaoPorDia;
+    private javax.swing.JTextField txtDuracaoTotalPrevista;
     private javax.swing.JTextField txtSlotDeTempo;
     // End of variables declaration//GEN-END:variables
+
+    public JCheckBox getJCB00() {
+        return JCB00;
+    }
+
+    public JCheckBox getJCB01() {
+        return JCB01;
+    }
+
+    public JCheckBox getJCB02() {
+        return JCB02;
+    }
+
+    public JCheckBox getJCB03() {
+        return JCB03;
+    }
+
+    public JCheckBox getJCB04() {
+        return JCB04;
+    }
+
+    public JCheckBox getJCB05() {
+        return JCB05;
+    }
+
+    public JCheckBox getJCB06() {
+        return JCB06;
+    }
+
+    public JCheckBox getJCB07() {
+        return JCB07;
+    }
+
+    public JCheckBox getJCB08() {
+        return JCB08;
+    }
+
+    public JCheckBox getJCB09() {
+        return JCB09;
+    }
+
+    public JCheckBox getJCB10() {
+        return JCB10;
+    }
+
+    public JCheckBox getJCB11() {
+        return JCB11;
+    }
+
+    public JCheckBox getJCB12() {
+        return JCB12;
+    }
+
+    public JCheckBox getJCB13() {
+        return JCB13;
+    }
+
+    public JCheckBox getJCB14() {
+        return JCB14;
+    }
+
+    public JCheckBox getJCB15() {
+        return JCB15;
+    }
+
+    public JCheckBox getJCB16() {
+        return JCB16;
+    }
+
+    public JCheckBox getJCB17() {
+        return JCB17;
+    }
+
+    public JCheckBox getJCB18() {
+        return JCB18;
+    }
+
+    public JCheckBox getJCB19() {
+        return JCB19;
+    }
+
+    public JCheckBox getJCB20() {
+        return JCB20;
+    }
+
+    public JCheckBox getJCB21() {
+        return JCB21;
+    }
+
+    public JCheckBox getJCB22() {
+        return JCB22;
+    }
+
+    public JCheckBox getJCB23() {
+        return JCB23;
+    }
+
+    public JPanel getAdiconarTarefa() {
+        return adiconarTarefa;
+    }
+
+    public JButton getBtnConcluirTarefa() {
+        return btnConcluirTarefa;
+    }
+
+    public JButton getBtnEditarTarefa() {
+        return btnEditarTarefa;
+    }
+
+    public JButton getBtnExibirTarefas() {
+        return btnExibirTarefas;
+    }
+
+    public JButton getBtnSalvarAdiconarTarefas() {
+        return btnSalvarAdiconarTarefas;
+    }
+
+    public JButton getBtnSalvarConfigurarCalendario() {
+        return btnSalvarConfigurarCalendario;
+    }
+
+    public JPanel getCalendario() {
+        return calendario;
+    }
+
+    public JPanel getConfigurarCalendario() {
+        return configurarCalendario;
+    }
+
+    public JCheckBox getDomingo() {
+        return domingo;
+    }
+
+    public JXDatePicker getDpCalendario() {
+        return dpCalendario;
+    }
+
+    public JCheckBox getjCBImportante() {
+        return jCBImportante;
+    }
+
+    public JCheckBox getjCBUrgente() {
+        return jCBUrgente;
+    }
+
+    public JRadioButton getjRBFifo() {
+        return jRBFifo;
+    }
+
+    public JRadioButton getjRBSjf() {
+        return jRBSjf;
+    }
+
+    public JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    public JTabbedPane getjTabbedPane1() {
+        return jTabbedPane1;
+    }
+
+    public JLabel getLblDadosCalendario() {
+        return lblDadosCalendario;
+    }
+
+    public JLabel getLblDadosDaTarefa() {
+        return lblDadosDaTarefa;
+    }
+
+    public JLabel getLblDataBase() {
+        return lblDataBase;
+    }
+
+    public JLabel getLblDataPrevistaFim() {
+        return lblDataPrevistaFim;
+    }
+
+    public JLabel getLblDataPrevistaInicio() {
+        return lblDataPrevistaInicio;
+    }
+
+    public JLabel getLblDescricao() {
+        return lblDescricao;
+    }
+
+    public JLabel getLblDiasUteis() {
+        return lblDiasUteis;
+    }
+
+    public JLabel getLblDuracaoMaximaExecucaoPorDia() {
+        return lblDuracaoMaximaExecucaoPorDia;
+    }
+
+    public JLabel getLblDuracaoTotalPrevista() {
+        return lblDuracaoTotalPrevista;
+    }
+
+    public JLabel getLblEscalonamento() {
+        return lblEscalonamento;
+    }
+
+    public JLabel getLblHorarios() {
+        return lblHorarios;
+    }
+
+    public JLabel getLblSlotDeTempo() {
+        return lblSlotDeTempo;
+    }
+
+    public JList getListTarefas() {
+        return listTarefas;
+    }
+
+    public JPanel getPnlCalendarioPrincipal() {
+        return pnlCalendarioPrincipal;
+    }
+
+    public JPanel getPnlExibirTarefas() {
+        return pnlExibirTarefas;
+    }
+
+    public JPanel getPnlTarefas() {
+        return pnlTarefas;
+    }
+
+    public JCheckBox getQuarta() {
+        return quarta;
+    }
+
+    public JCheckBox getQuinta() {
+        return quinta;
+    }
+
+    public JCheckBox getSabado() {
+        return sabado;
+    }
+
+    public JCheckBox getSegunda() {
+        return segunda;
+    }
+
+    public JCheckBox getSexta() {
+        return sexta;
+    }
+
+    public JCheckBox getTerca() {
+        return terca;
+    }
+
+    public JTextField getTxtDataBase() {
+        return txtDataBase;
+    }
+
+    public JTextField getTxtDescricao() {
+        return txtDescricao;
+    }
+
+    public JTextField getTxtDuracaoMaximaExecucaoPorDia() {
+        return txtDuracaoMaximaExecucaoPorDia;
+    }
+
+    public JTextField getTxtDuracaoTotalPrevista() {
+        return txtDuracaoTotalPrevista;
+    }
+
+    public JTextField getTxtSlotDeTempo() {
+        return txtSlotDeTempo;
+    }
+
+    public JFormattedTextField getFtxfDataPrevistaFim() {
+        return ftxfDataPrevistaFim;
+    }
+
+    public JFormattedTextField getFtxfDataPrevistaInicio() {
+        return ftxfDataPrevistaInicio;
+    }
+
+    public JMenu getmOpcoes() {
+        return mOpcoes;
+    }
+
+    public JMenuBar getMbMenu() {
+        return mbMenu;
+    }
+
+    public JMenuItem getMiTarefasConcluidas() {
+        return miTarefasConcluidas;
+    }
+
+    public JButton getBtnAdicionarTipo() {
+        return btnAdicionarTipo;
+    }
+
+    public JComboBox getCbTiposTarefa() {
+        return cbTiposTarefa;
+    }
+
+    public AdicionarTarefaController getAdicionarTarefaController() {
+        return adicionarTarefaController;
+    }
+
+    public Calendario getCalendarioPrincipal() {
+        return calendarioPrincipal;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public TelaPrincipalController getTelaPrincipalController() {
+        return telaPrincipalController;
+    }
+    
+    
+
 }

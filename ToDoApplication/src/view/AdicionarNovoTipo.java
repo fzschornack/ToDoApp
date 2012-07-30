@@ -4,16 +4,19 @@
  */
 package view;
 
+import controller.AdicionarNovoTipoController;
+import javax.swing.*;
+
 /**
  *
  * @author Nilton
  */
-public class AdicionarTipo extends javax.swing.JFrame {
+public class AdicionarNovoTipo extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdicionarTipo
+     * Creates new form AdicionarNovoTipo
      */
-    public AdicionarTipo() {
+    public AdicionarNovoTipo() {
         initComponents();
     }
 
@@ -31,20 +34,25 @@ public class AdicionarTipo extends javax.swing.JFrame {
         txtTipo = new javax.swing.JTextField();
         txtSubTipo = new javax.swing.JTextField();
         jRBSubtipo = new javax.swing.JRadioButton();
-        btnSalvar = new javax.swing.JButton();
+        btnAdicionarTipo = new javax.swing.JButton();
         jRBTipo = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblAdicionarTipo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblAdicionarTipo.setText("Adicionar tipo");
+        lblAdicionarTipo.setText("Adicionar Novo Tipo");
 
         buttonGroup1.add(jRBSubtipo);
         jRBSubtipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRBSubtipo.setText("Subtipo");
 
-        btnSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSalvar.setText("Salvar");
+        btnAdicionarTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnAdicionarTipo.setText("Adicionar Tipo");
+        btnAdicionarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarTipoActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRBTipo);
         jRBTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -55,20 +63,24 @@ public class AdicionarTipo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRBSubtipo)
-                    .addComponent(jRBTipo))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblAdicionarTipo)
-                    .addComponent(txtTipo)
-                    .addComponent(txtSubTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                .addContainerGap(108, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvar)
-                .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAdicionarTipo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRBSubtipo)
+                                    .addComponent(jRBTipo))
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTipo)
+                                    .addComponent(txtSubTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))))
+                        .addGap(0, 144, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(321, Short.MAX_VALUE)
+                        .addComponent(btnAdicionarTipo)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,12 +96,17 @@ public class AdicionarTipo extends javax.swing.JFrame {
                     .addComponent(txtSubTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRBSubtipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
-                .addComponent(btnSalvar)
+                .addComponent(btnAdicionarTipo)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdicionarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTipoActionPerformed
+        AdicionarNovoTipoController adicionarNovoTipoController = new AdicionarNovoTipoController(this);
+        adicionarNovoTipoController.adicionarNovoTipo();
+    }//GEN-LAST:event_btnAdicionarTipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,13 +129,13 @@ public class AdicionarTipo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdicionarTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdicionarNovoTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdicionarTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdicionarNovoTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdicionarTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdicionarNovoTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdicionarTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdicionarNovoTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -128,12 +145,12 @@ public class AdicionarTipo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new AdicionarTipo().setVisible(true);
+                new AdicionarNovoTipo().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnAdicionarTipo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton jRBSubtipo;
     private javax.swing.JRadioButton jRBTipo;
@@ -141,4 +158,34 @@ public class AdicionarTipo extends javax.swing.JFrame {
     private javax.swing.JTextField txtSubTipo;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnAdicionarTipo() {
+        return btnAdicionarTipo;
+    }
+
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
+    }
+
+    public JRadioButton getjRBSubtipo() {
+        return jRBSubtipo;
+    }
+
+    public JRadioButton getjRBTipo() {
+        return jRBTipo;
+    }
+
+    public JLabel getLblAdicionarTipo() {
+        return lblAdicionarTipo;
+    }
+
+    public JTextField getTxtSubTipo() {
+        return txtSubTipo;
+    }
+
+    public JTextField getTxtTipo() {
+        return txtTipo;
+    }
+
+    
 }

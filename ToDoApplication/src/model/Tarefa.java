@@ -1,7 +1,7 @@
 package model;
 
-import java.sql.Date;
 import java.sql.Time;
+import java.util.Date;
 
 /**
 *
@@ -141,6 +141,11 @@ public class Tarefa {
     public void setDia(Dia dia) {
         this.dia = dia;
     }
-	
+
+    @Override
+    public String toString() {
+        return "Tarefa{" + "idTarefa=" + idTarefa + ", descricao=" + descricao + ", dataPrevistaInicio=" + dataPrevistaInicio + ", dataRealInicio=" + dataRealInicio + ", dataPrevistaFim=" + dataPrevistaFim + ", dataRealFim=" + dataRealFim + ", duracaoTotalPrevista=" + duracaoTotalPrevista + ", duracaoTotalReal=" + duracaoTotalReal + ", duracaoMaximaExecucaoDia=" + duracaoMaximaExecucaoDia + ", tarefaUrgente=" + tarefaUrgente + ", tarefaImportante=" + tarefaImportante + ", tipo=" + tipo.getNome() + ", prioridade=" + prioridade + ", dia=" + dia.getIdDia() + '}';
+    }
+    
 	
 }

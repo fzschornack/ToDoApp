@@ -4,10 +4,9 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +24,7 @@ public class ConnectorSingleton {
 	private static Statement statement = null;
 	
         private final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private final static String DATABASE_URL = "jdbc:mysql://localhost/sip";
+	private final static String DATABASE_URL = "jdbc:mysql://localhost:3306/to_do_app";
 	//host defaults to localhost, pgadmin port defaults to 5432
 	
         public static void connect() {

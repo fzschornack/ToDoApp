@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 /**
@@ -19,11 +19,14 @@ public class Dia {
     private ArrayList<Boolean> slots;
     private Calendario calendario;
     
-    public Dia(ConfiguracaoCalendario configuracaoCalendario, Date data, Calendario calendario) {
+    public Dia(ConfiguracaoCalendario configuracaoCalendario, Date data) {
         this.slots = new ArrayList<Boolean>(configuracaoCalendario.getNumeroHorasDia()/configuracaoCalendario.getSlotTempo());
         this.tarefas = new ArrayList<Tarefa>(configuracaoCalendario.getNumeroHorasDia()/configuracaoCalendario.getSlotTempo());
         this.data = data;
-        this.calendario = calendario;
+    }
+
+    public Dia() {
+        
     }
 
     /**

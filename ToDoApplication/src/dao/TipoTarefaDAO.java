@@ -17,10 +17,9 @@ public class TipoTarefaDAO {
     public static void create(TipoTarefa tipoTarefa){
         
         ConnectorSingleton.connect();
-        ConnectorSingleton.update("INSERT INTO tipo_tarefa ( nome, calendario_idcalendario)"
+        ConnectorSingleton.update("INSERT INTO tipo_tarefa ( nome)"
                 + " VALUES ('" 
-                + tipoTarefa.getNome()+ "', "
-                + tipoTarefa.getCalendario().getIdCalendario() + "); " );   
+                + tipoTarefa.getNome()+ "'); " );   
                 
         ConnectorSingleton.close();    
     }
@@ -36,7 +35,28 @@ public class TipoTarefaDAO {
                 tipoTarefa = new TipoTarefa();
                 tipoTarefa.setIdTipoTarefa(idTipoTarefa);
                 tipoTarefa.setNome(resultSet.getString("nome"));
-                tipoTarefa.setCalendario(CalendarioDAO.read(resultSet.getLong("calendario_idcalendario")));
+                tipoTarefa.setSubtipos(SubtipoTarefaDAO.getAllIdTipo(resultSet.getLong("idtipo")));
+            }
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        ConnectorSingleton.close();
+        return tipoTarefa;
+    }
+    
+    public static TipoTarefa read(String nome){
+        TipoTarefa tipoTarefa = null;
+        ConnectorSingleton.connect();
+        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tipo_tarefa WHERE nome LIKE '%"
+                + nome + "%';");
+        try{
+            if(resultSet.next())
+            {
+                tipoTarefa = new TipoTarefa();
+                tipoTarefa.setIdTipoTarefa(resultSet.getLong("idtipo"));
+                tipoTarefa.setNome(resultSet.getString("nome"));
+                tipoTarefa.setSubtipos(SubtipoTarefaDAO.getAllIdTipo(resultSet.getLong("idtipo")));
             }
         }catch(Exception e)
         {
@@ -49,8 +69,7 @@ public class TipoTarefaDAO {
     public static void update(TipoTarefa tipoTarefa){
         ConnectorSingleton.connect();
         ConnectorSingleton.update("UPDATE tipo_tarefa SET nome = '" 
-                + tipoTarefa.getNome() + "',calendario_idcalendario="
-                + tipoTarefa.getCalendario().getIdCalendario() + " WHERE idtipo = " 
+                + tipoTarefa.getNome() + " WHERE idtipo = " 
                 + tipoTarefa.getIdTipoTarefa()+";"); 
              
         ConnectorSingleton.close();
@@ -76,7 +95,7 @@ public class TipoTarefaDAO {
                 tipoTarefa = new TipoTarefa();
                 tipoTarefa.setIdTipoTarefa(resultSet.getLong("idtipo"));
                 tipoTarefa.setNome(resultSet.getString("nome"));
-                tipoTarefa.setCalendario(CalendarioDAO.read(resultSet.getLong("calendario_idcalendario")));
+                tipoTarefa.setSubtipos(SubtipoTarefaDAO.getAllIdTipo(resultSet.getLong("idtipo")));
                 lista.add(tipoTarefa);
             }
         }catch(Exception e)

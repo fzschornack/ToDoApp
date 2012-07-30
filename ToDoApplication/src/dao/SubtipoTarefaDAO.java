@@ -46,6 +46,27 @@ public class SubtipoTarefaDAO {
         return subtipoTarefa;
     }
     
+    public static SubtipoTarefa read(String nome){
+        SubtipoTarefa subtipoTarefa = null;
+        ConnectorSingleton.connect();
+        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM subtipo_tarefa WHERE nome LIKE '%"
+                + nome + "%';");
+        try{
+            if(resultSet.next())
+            {
+                subtipoTarefa = new SubtipoTarefa();
+                subtipoTarefa.setIdSubtipoTarefa(resultSet.getLong("idsubtipo"));
+                subtipoTarefa.setNome(resultSet.getString("nome"));
+                subtipoTarefa.setIdTipoTarefa(resultSet.getLong("tipo_tarefa_idtipo"));
+            }
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        ConnectorSingleton.close();
+        return subtipoTarefa;
+    }
+    
     public static void update(SubtipoTarefa subtipoTarefa){
         ConnectorSingleton.connect();
         ConnectorSingleton.update("UPDATE subtipo_tarefa SET nome = '" 
@@ -70,6 +91,29 @@ public class SubtipoTarefaDAO {
         SubtipoTarefa subtipoTarefa = null;
         ConnectorSingleton.connect();
         ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM subtipo_tarefa;");
+        try{
+            while(resultSet.next())
+            {
+                subtipoTarefa = new SubtipoTarefa();
+                subtipoTarefa.setIdSubtipoTarefa(resultSet.getLong("idsubtipo"));
+                subtipoTarefa.setNome(resultSet.getString("nome"));
+                subtipoTarefa.setIdTipoTarefa(resultSet.getLong("tipo_tarefa_idtipo"));
+                lista.add(subtipoTarefa);
+            }
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        ConnectorSingleton.close();
+        return lista;
+    }
+    
+    public static ArrayList<SubtipoTarefa> getAllIdTipo(long idTipo){
+        ArrayList<SubtipoTarefa> lista = new ArrayList<SubtipoTarefa>();
+        SubtipoTarefa subtipoTarefa = null;
+        ConnectorSingleton.connect();
+        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM subtipo_tarefa WHERE tipo_tarefa_idtipo = "+
+                idTipo+";");
         try{
             while(resultSet.next())
             {

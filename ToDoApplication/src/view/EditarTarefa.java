@@ -4,17 +4,29 @@
  */
 package view;
 
+import controller.EditarTarefaController;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import model.Tarefa;
+
 /**
  *
  * @author Nilton
  */
 public class EditarTarefa extends javax.swing.JFrame {
 
+    String descricaoTarefa;
+    EditarTarefaController editarTarefaController;
     /**
      * Creates new form EditarTarefa
      */
-    public EditarTarefa() {
+    public EditarTarefa(String descricaoTarefa) {
+        this.editarTarefaController = new EditarTarefaController(this);
+        this.descricaoTarefa = descricaoTarefa;
         initComponents();
+        this.editarTarefaController.preencher(descricaoTarefa);
     }
 
     /**
@@ -27,29 +39,30 @@ public class EditarTarefa extends javax.swing.JFrame {
     private void initComponents() {
 
         lblDadosDaTarefa = new javax.swing.JLabel();
-        lblDescriçao = new javax.swing.JLabel();
-        txtDescriçao = new javax.swing.JTextField();
+        lblDescricao = new javax.swing.JLabel();
+        txtDescricao = new javax.swing.JTextField();
         lblDataPrevistaInicio = new javax.swing.JLabel();
         txtDataPrevistaInicio = new javax.swing.JTextField();
         lblDataPrevistaFim = new javax.swing.JLabel();
         txtDataPrevistaFim = new javax.swing.JTextField();
-        lblDuraçaoTotalPrevista = new javax.swing.JLabel();
-        txtDuraçaoTotalPrevista = new javax.swing.JTextField();
-        lblDuraçaoMaximaExecuçaoPorDia = new javax.swing.JLabel();
-        txtDuraçaoMaximaExecuçaoPordia = new javax.swing.JTextField();
+        lblDuracaoTotalPrevista = new javax.swing.JLabel();
+        txtDuracaoTotalPrevista = new javax.swing.JTextField();
+        lblDuracaoMaximaExecucaoPorDia = new javax.swing.JLabel();
+        txtDuracaoMaximaExecucaoPordia = new javax.swing.JTextField();
         jCBUrgente = new javax.swing.JCheckBox();
         jCBImportante = new javax.swing.JCheckBox();
-        btnTipo = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txfTipoTarefa = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblDadosDaTarefa.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblDadosDaTarefa.setText("Dados da Tarefa");
 
-        lblDescriçao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblDescriçao.setText("Descriçao");
+        lblDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDescricao.setText("Descriçao");
 
         lblDataPrevistaInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDataPrevistaInicio.setText("Data prevista inicio");
@@ -57,11 +70,11 @@ public class EditarTarefa extends javax.swing.JFrame {
         lblDataPrevistaFim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDataPrevistaFim.setText("Data prevista fim");
 
-        lblDuraçaoTotalPrevista.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblDuraçaoTotalPrevista.setText("Duraçao total prevista");
+        lblDuracaoTotalPrevista.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDuracaoTotalPrevista.setText("Duraçao total prevista");
 
-        lblDuraçaoMaximaExecuçaoPorDia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblDuraçaoMaximaExecuçaoPorDia.setText("Duraçao maxima execuçao por dia");
+        lblDuracaoMaximaExecucaoPorDia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDuracaoMaximaExecucaoPorDia.setText("Duraçao maxima execuçao por dia");
 
         jCBUrgente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBUrgente.setText("Urgente");
@@ -69,14 +82,14 @@ public class EditarTarefa extends javax.swing.JFrame {
         jCBImportante.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBImportante.setText("Importante");
 
-        btnTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnTipo.setText("Tipo");
-
         btnExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnExcluir.setText("Excluir");
 
         btnSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalvar.setText("Salvar");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Tipo da Tarefa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,21 +104,27 @@ public class EditarTarefa extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDescriçao)
-                            .addComponent(lblDataPrevistaInicio)
-                            .addComponent(lblDataPrevistaFim)
-                            .addComponent(lblDuraçaoTotalPrevista)
-                            .addComponent(lblDuraçaoMaximaExecuçaoPorDia)
-                            .addComponent(jCBUrgente)
-                            .addComponent(jCBImportante)
-                            .addComponent(btnTipo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtDataPrevistaInicio)
-                            .addComponent(txtDuraçaoTotalPrevista)
-                            .addComponent(txtDescriçao)
-                            .addComponent(txtDataPrevistaFim)
-                            .addComponent(txtDuraçaoMaximaExecuçaoPordia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDescricao)
+                                    .addComponent(lblDataPrevistaInicio)
+                                    .addComponent(lblDataPrevistaFim)
+                                    .addComponent(lblDuracaoTotalPrevista)
+                                    .addComponent(lblDuracaoMaximaExecucaoPorDia)
+                                    .addComponent(jCBUrgente)
+                                    .addComponent(jCBImportante))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtDataPrevistaInicio)
+                                    .addComponent(txtDuracaoTotalPrevista)
+                                    .addComponent(txtDescricao)
+                                    .addComponent(txtDataPrevistaFim)
+                                    .addComponent(txtDuracaoMaximaExecucaoPordia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txfTipoTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -121,8 +140,8 @@ public class EditarTarefa extends javax.swing.JFrame {
                 .addComponent(lblDadosDaTarefa)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDescriçao)
-                    .addComponent(txtDescriçao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDescricao)
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDataPrevistaInicio)
@@ -133,18 +152,20 @@ public class EditarTarefa extends javax.swing.JFrame {
                     .addComponent(txtDataPrevistaFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDuraçaoTotalPrevista)
-                    .addComponent(txtDuraçaoTotalPrevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDuracaoTotalPrevista)
+                    .addComponent(txtDuracaoTotalPrevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDuraçaoMaximaExecuçaoPorDia)
-                    .addComponent(txtDuraçaoMaximaExecuçaoPordia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDuracaoMaximaExecucaoPorDia)
+                    .addComponent(txtDuracaoMaximaExecucaoPordia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCBUrgente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCBImportante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTipo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txfTipoTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
@@ -192,26 +213,96 @@ public class EditarTarefa extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new EditarTarefa().setVisible(true);
+                //new EditarTarefa().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnTipo;
     private javax.swing.JCheckBox jCBImportante;
     private javax.swing.JCheckBox jCBUrgente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblDadosDaTarefa;
     private javax.swing.JLabel lblDataPrevistaFim;
     private javax.swing.JLabel lblDataPrevistaInicio;
-    private javax.swing.JLabel lblDescriçao;
-    private javax.swing.JLabel lblDuraçaoMaximaExecuçaoPorDia;
-    private javax.swing.JLabel lblDuraçaoTotalPrevista;
+    private javax.swing.JLabel lblDescricao;
+    private javax.swing.JLabel lblDuracaoMaximaExecucaoPorDia;
+    private javax.swing.JLabel lblDuracaoTotalPrevista;
+    private javax.swing.JTextField txfTipoTarefa;
     private javax.swing.JTextField txtDataPrevistaFim;
     private javax.swing.JTextField txtDataPrevistaInicio;
-    private javax.swing.JTextField txtDescriçao;
-    private javax.swing.JTextField txtDuraçaoMaximaExecuçaoPordia;
-    private javax.swing.JTextField txtDuraçaoTotalPrevista;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtDuracaoMaximaExecucaoPordia;
+    private javax.swing.JTextField txtDuracaoTotalPrevista;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnExcluir() {
+        return btnExcluir;
+    }
+
+    public JButton getBtnSalvar() {
+        return btnSalvar;
+    }
+
+    public JCheckBox getjCBImportante() {
+        return jCBImportante;
+    }
+
+    public JCheckBox getjCBUrgente() {
+        return jCBUrgente;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public JLabel getLblDadosDaTarefa() {
+        return lblDadosDaTarefa;
+    }
+
+    public JLabel getLblDataPrevistaFim() {
+        return lblDataPrevistaFim;
+    }
+
+    public JLabel getLblDataPrevistaInicio() {
+        return lblDataPrevistaInicio;
+    }
+
+    public JLabel getLblDescricao() {
+        return lblDescricao;
+    }
+
+    public JLabel getLblDuracaoMaximaExecucaoPorDia() {
+        return lblDuracaoMaximaExecucaoPorDia;
+    }
+
+    public JLabel getLblDuracaoTotalPrevista() {
+        return lblDuracaoTotalPrevista;
+    }
+
+    public JTextField getTxfTipoTarefa() {
+        return txfTipoTarefa;
+    }
+
+    public JTextField getTxtDataPrevistaFim() {
+        return txtDataPrevistaFim;
+    }
+
+    public JTextField getTxtDataPrevistaInicio() {
+        return txtDataPrevistaInicio;
+    }
+
+    public JTextField getTxtDescricao() {
+        return txtDescricao;
+    }
+
+    public JTextField getTxtDuracaoMaximaExecucaoPordia() {
+        return txtDuracaoMaximaExecucaoPordia;
+    }
+
+    public JTextField getTxtDuracaoTotalPrevista() {
+        return txtDuracaoTotalPrevista;
+    }
+
 }

@@ -37,11 +37,10 @@ public class ConfiguracaoCalendarioDAO {
                 
         
         ConnectorSingleton.connect();
-        ConnectorSingleton.update("INSERT INTO configuracao_calendario ( slot_tempo, calendario_idcalendario, "
+        ConnectorSingleton.update("INSERT INTO configuracao_calendario ( slot_tempo,"
                 + " dias, horarios)"
                 + " VALUES ('" 
-                + configuracaoCalendario.getSlotTempo() + "', "
-                + configuracaoCalendario.getCalendario().getIdCalendario() + ", '"
+                + configuracaoCalendario.getSlotTempo() + "', '"
                 + dias + "', '"
                 + horarios + "'); " );   
                 
@@ -62,7 +61,6 @@ public class ConfiguracaoCalendarioDAO {
                 configuracaoCalendario = new ConfiguracaoCalendario();
                 configuracaoCalendario.setIdConfiguracaoCalendario(idConfiguracaoCalendario);
                 configuracaoCalendario.setSlotTempo(resultSet.getInt("slot_tempo"));
-                configuracaoCalendario.setCalendario(CalendarioDAO.read(resultSet.getLong("calendario_idcalendario")));
                 
                 dias = resultSet.getString("dias");
                 horarios = resultSet.getString("horarios");
@@ -107,8 +105,7 @@ public class ConfiguracaoCalendarioDAO {
         
         ConnectorSingleton.connect();
         ConnectorSingleton.update("UPDATE configuracao_calendario SET slot_tempo = " 
-                + configuracaoCalendario.getSlotTempo() + ",calendario_idcalendario="
-                + configuracaoCalendario.getCalendario().getIdCalendario() + ", dias ='"
+                + configuracaoCalendario.getSlotTempo() + ", dias ='"
                 + dias + "', horarios ='"
                 + horarios +"' WHERE idconfiguracao_calendario = " 
                 + configuracaoCalendario.getIdConfiguracaoCalendario()+";"); 
@@ -139,7 +136,6 @@ public class ConfiguracaoCalendarioDAO {
                 configuracaoCalendario = new ConfiguracaoCalendario();
                 configuracaoCalendario.setIdConfiguracaoCalendario(resultSet.getLong("idconfiguracao_calendario"));
                 configuracaoCalendario.setSlotTempo(resultSet.getInt("slot_tempo"));
-                configuracaoCalendario.setCalendario(CalendarioDAO.read(resultSet.getLong("calendario_idcalendario")));
                 
                 dias = resultSet.getString("dias");
                 horarios = resultSet.getString("horarios");
