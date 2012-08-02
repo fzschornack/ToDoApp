@@ -18,18 +18,18 @@ import model.Dia;
 public class DiaDAO {
     public static void create(Dia dia){
         
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("INSERT INTO dia (data)"
+        Connector.connect();
+        Connector.update("INSERT INTO dia (data)"
                 + " VALUES ('" 
-                + new java.sql.Date(dia.getData().getTime()) + "'); " );   
+                + dia.getData() + "'); " );   
                 
-        ConnectorSingleton.close();    
+        Connector.close();    
     }
     
     public static Dia read(long idDia){
         Dia dia = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM dia WHERE iddia ="
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM dia WHERE iddia ="
                 + idDia + ";");
         try{
             if(resultSet.next())
@@ -37,74 +37,71 @@ public class DiaDAO {
                 dia = new Dia();
                 dia.setIdDia(resultSet.getLong("iddia"));
                 dia.setData(resultSet.getDate("data"));
-                dia.setTarefas(TarefaDAO.getAllIdDia(resultSet.getLong("iddia")));
             }
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return dia;
     }
     
     public static Dia read(Date data){
         Dia dia = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM dia WHERE data ='"
-                + new java.sql.Date(data.getTime())+ "';");
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM dia WHERE data ='"
+                + data+ "';");
         try{
             if(resultSet.next())
             {
                 dia = new Dia();
                 dia.setIdDia(resultSet.getLong("iddia"));
                 dia.setData(resultSet.getDate("data"));
-                dia.setTarefas(TarefaDAO.getAllIdDia(resultSet.getLong("iddia")));
             }
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return dia;
     }
     
     public static void update(Dia dia){
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("UPDATE dia SET iddia = " 
+        Connector.connect();
+        Connector.update("UPDATE dia SET iddia = " 
                 + dia.getIdDia() + ", data ='" 
                 + dia.getData() + "';");
              
-        ConnectorSingleton.close();
+        Connector.close();
     
     } 
     
     public static void delete(long idDia)
     {
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("DELETE FROM dia WHERE iddia=" +
+        Connector.connect();
+        Connector.update("DELETE FROM dia WHERE iddia=" +
                 idDia + ";");
-        ConnectorSingleton.close();
+        Connector.close();
     }
     
     public static ArrayList<Dia> getAll(){
         ArrayList<Dia> lista = new ArrayList<Dia>();
         Dia dia = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM dia;");
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM dia;");
         try{
             while(resultSet.next())
             {
                 dia = new Dia();
                 dia.setIdDia(resultSet.getLong("iddia"));
                 dia.setData(resultSet.getDate("data"));
-                dia.setTarefas(TarefaDAO.getAllIdDia(resultSet.getLong("iddia")));
                 lista.add(dia);
             }
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return lista;
     }
     

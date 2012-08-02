@@ -13,7 +13,8 @@ package model;
 * 
 */
 public abstract class TiposDeTarefaComposite{
-	String nome;
+	
+        String nome;
         
         public abstract String getNome();
         

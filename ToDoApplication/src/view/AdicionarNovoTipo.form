@@ -42,12 +42,14 @@
                                   <Component id="txtTipo" max="32767" attributes="0"/>
                                   <Component id="txtSubTipo" alignment="0" pref="146" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbTiposTarefa" min="-2" pref="204" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="144" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="321" max="32767" attributes="0"/>
+                      <EmptySpace pref="450" max="32767" attributes="0"/>
                       <Component id="btnAdicionarTipo" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -69,6 +71,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtSubTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jRBSubtipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTiposTarefa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="206" max="32767" attributes="0"/>
               <Component id="btnAdicionarTipo" min="-2" max="-2" attributes="0"/>
@@ -122,6 +125,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Tipo"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbTiposTarefa">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new comboBoxTipoTarefaModel()" type="code"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="ArrayList&lt;TipoTarefa&gt; tipos;&#xa;        tipos = TipoTarefaDAO.getAll();&#xa;        int cont = 0;&#xa;        for(TipoTarefa t: tipos) {&#xa;            cbTiposTarefa.insertItemAt(t.getNome(),cont);&#xa;            cont++;&#xa;        }"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

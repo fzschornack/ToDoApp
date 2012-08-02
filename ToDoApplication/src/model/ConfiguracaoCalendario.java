@@ -6,26 +6,24 @@ import java.util.ArrayList;
 /**
 *
 * @author Felipe Zschornack
+* 
+*   Nessa classe é utilizado o padrão Singleton, já que deve existir somente uma Configuracao do Calendario para o pragrama todo,
+* ou seja, somente uma instancia de ConfiguracaoCalendario
 */
 public class ConfiguracaoCalendario {
 
         private long idConfiguracaoCalendario;
-	private ArrayList<Boolean> diasUteis;
-	private ArrayList<Boolean> horarioAlocacaoTarefas;
+	private String horarioAlocacaoTarefas;
 	private int slotTempo;
-        private Calendario calendario;
-
-        public ConfiguracaoCalendario(Calendario calendario, ArrayList<Boolean> diasUteis, ArrayList<Boolean> horarioAlocacaoTarefas, int slotTempo) {
-            this.diasUteis = diasUteis;
-            this.horarioAlocacaoTarefas = horarioAlocacaoTarefas;
-            this.slotTempo = slotTempo;
-            this.calendario = calendario;
-        }
+        
+        private static ConfiguracaoCalendario instancia = new ConfiguracaoCalendario();
                
-        public ConfiguracaoCalendario() {
-            this.diasUteis = new ArrayList<Boolean>(7);
-            this.horarioAlocacaoTarefas = new ArrayList<Boolean>(24);
+        private ConfiguracaoCalendario() {
 	}
+        
+        public static ConfiguracaoCalendario getInstancia() {
+            return instancia;
+        }
         
         public long getIdConfiguracaoCalendario() {
             return idConfiguracaoCalendario;
@@ -35,19 +33,11 @@ public class ConfiguracaoCalendario {
             this.idConfiguracaoCalendario = idConfiguracaoCalendario;
         }
 
-	public ArrayList<Boolean> getDiasUteis() {
-		return diasUteis;
-	}
-
-	public void setDiasUteis(ArrayList<Boolean> diasUteis) {
-		this.diasUteis = diasUteis;
-	}
-
-	public ArrayList<Boolean> getHorarioAlocacaoTarefas() {
+	public String getHorarioAlocacaoTarefas() {
 		return horarioAlocacaoTarefas;
 	}
 
-	public void setHorarioAlocacaoTarefas(ArrayList<Boolean> horarioAlocacaoTarefas) {
+	public void setHorarioAlocacaoTarefas(String horarioAlocacaoTarefas) {
 		this.horarioAlocacaoTarefas = horarioAlocacaoTarefas;
 	}
 
@@ -58,39 +48,15 @@ public class ConfiguracaoCalendario {
 	public void setSlotTempo(int slotTempo) {
 		this.slotTempo = slotTempo;
 	}
-	
-	public Integer getNumeroDiasUteis() {
-            int numeroDiasUteis = 0;
-            
-            for(int i=0; i<7; i++)
-                   if(this.diasUteis.get(i) == true)
-                       numeroDiasUteis++;
-            
-            return numeroDiasUteis;
-        }
         
         public Integer getNumeroHorasDia() {
             int numeroHorasDia = 0;
             
             for(int i=0; i<24; i++)
-                   if(this.horarioAlocacaoTarefas.get(i) == true)
+                   if(this.horarioAlocacaoTarefas.charAt(i) == '1')
                        numeroHorasDia++;
             
             return numeroHorasDia;
         }
-
-    /**
-     * @return the calendario
-     */
-    public Calendario getCalendario() {
-        return calendario;
-    }
-
-    /**
-     * @param calendario the calendario to set
-     */
-    public void setCalendario(Calendario calendario) {
-        this.calendario = calendario;
-    }
 	
 }

@@ -20,8 +20,8 @@ public class TarefaDAO {
      
     public static void create(Tarefa tarefa){
         System.out.println(tarefa.toString());
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("INSERT INTO tarefa (descricao, data_prevista_inicio,"
+        Connector.connect();
+        Connector.update("INSERT INTO tarefa (descricao, data_prevista_inicio,"
                 + "data_real_inicio,data_prevista_fim, data_real_fim, duracao_total_prevista,"
                 + "duracao_total_real, duracao_maxima_execucao_dia,"
                 + "tipo,"
@@ -39,13 +39,13 @@ public class TarefaDAO {
                 + tarefa.getDia().getIdDia() + ","
                 + tarefa.getPrioridade()+"); " );   
                 
-        ConnectorSingleton.close();    
+        Connector.close();    
     }
     
     public static Tarefa read(long idTarefa){
         Tarefa tarefa = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tarefa WHERE idtarefa ="
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM tarefa WHERE idtarefa ="
                 + idTarefa + ";");
         try{
             if(resultSet.next())
@@ -77,14 +77,14 @@ public class TarefaDAO {
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return tarefa;
     }
     
     public static Tarefa read(String descricao){
         Tarefa tarefa = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tarefa WHERE descricao LIKE '%"
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM tarefa WHERE descricao LIKE '%"
                 + descricao + "%';");
         try{
             if(resultSet.next())
@@ -116,42 +116,42 @@ public class TarefaDAO {
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return tarefa;
     }
     
     public static void update(Tarefa tarefa){
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("UPDATE tarefa SET descricao='"
-                + tarefa.getDescricao() + "', data_prevista_inicio =" 
-                + tarefa.getDataPrevistaInicio() + ", data_prevista_fim =" 
-                + tarefa.getDataPrevistaFim() + ", data_real_inicio =" 
-                + tarefa.getDataRealInicio() + ", data_real_fim =" 
-                + tarefa.getDataRealFim() + ", duracao_total_prevista =" 
+        Connector.connect();
+        Connector.update("UPDATE tarefa SET descricao='"
+                + tarefa.getDescricao() + "', data_prevista_inicio ='" 
+                + tarefa.getDataPrevistaInicio() + "', data_prevista_fim ='" 
+                + tarefa.getDataPrevistaFim() + "', data_real_inicio ='" 
+                + tarefa.getDataRealInicio() + "', data_real_fim ='" 
+                + tarefa.getDataRealFim() + "', duracao_total_prevista =" 
                 + tarefa.getDuracaoTotalPrevista() + ", duracao_total_real =" 
                 + tarefa.getDuracaoTotalReal() + ", duracao_maxima_execucao_dia =" 
                 + tarefa.getDuracaoMaximaExecucaoDia() + ", dia_iddia =" 
                 + tarefa.getDia().getIdDia() + ", tipo = '" 
                 + tarefa.getTipo().getNome() +"', prioridade = " 
-                + tarefa.getPrioridade() + ";"); 
+                + tarefa.getPrioridade() + " WHERE idtarefa ="+tarefa.getIdTarefa()+";"); 
              
-        ConnectorSingleton.close();
+        Connector.close();
     
     } 
     
     public static void delete(long idTarefa)
     {
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("DELETE FROM tarefa WHERE idtarefa =" +
+        Connector.connect();
+        Connector.update("DELETE FROM tarefa WHERE idtarefa =" +
                 idTarefa + ";");
-        ConnectorSingleton.close();
+        Connector.close();
     }
     
     public static ArrayList<Tarefa> getAll(){
         ArrayList<Tarefa> lista = new ArrayList<Tarefa>();
         Tarefa tarefa = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tarefa;");
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM tarefa;");
         try{
             while(resultSet.next())
             {
@@ -182,7 +182,7 @@ public class TarefaDAO {
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return lista;
     }
     
@@ -190,8 +190,8 @@ public class TarefaDAO {
     public static ArrayList<Tarefa> getAllIdDia(long idDia){
         ArrayList<Tarefa> lista = new ArrayList<Tarefa>();
         Tarefa tarefa = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tarefa WHERE dia_iddia = "+
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM tarefa WHERE dia_iddia = "+
                 idDia+" ;"); //implementar orderby FIFO
         try{
             while(resultSet.next())
@@ -223,15 +223,15 @@ public class TarefaDAO {
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return lista;
     }
     
     public static ArrayList<Tarefa> getAllIdDiaSjf(long idDia){
         ArrayList<Tarefa> lista = new ArrayList<Tarefa>();
         Tarefa tarefa = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tarefa WHERE dia_iddia = "+
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM tarefa WHERE dia_iddia = "+
                 idDia+" ;");//implementar SJF
         try{
             while(resultSet.next())
@@ -263,7 +263,7 @@ public class TarefaDAO {
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return lista;
     }
     

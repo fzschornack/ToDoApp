@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -17,18 +17,17 @@ public class Dia {
     private Date data;
     private ArrayList<Tarefa> tarefas;
     private ArrayList<Boolean> slots;
-    private Calendario calendario;
-    
-    public Dia(ConfiguracaoCalendario configuracaoCalendario, Date data) {
-        this.slots = new ArrayList<Boolean>(configuracaoCalendario.getNumeroHorasDia()/configuracaoCalendario.getSlotTempo());
-        this.tarefas = new ArrayList<Tarefa>(configuracaoCalendario.getNumeroHorasDia()/configuracaoCalendario.getSlotTempo());
-        this.data = data;
+    private ConfiguracaoCalendario configuracaoCalendario;
+
+    public Dia(ConfiguracaoCalendario configuracaoCalendario) {
+        this.configuracaoCalendario = configuracaoCalendario;
+        this.slots = new ArrayList<Boolean>(getConfiguracaoCalendario().getNumeroHorasDia()/getConfiguracaoCalendario().getSlotTempo());
+        this.tarefas = new ArrayList<Tarefa>(getConfiguracaoCalendario().getNumeroHorasDia()/getConfiguracaoCalendario().getSlotTempo());
     }
 
     public Dia() {
-        
     }
-
+    
     /**
      * @return the idDia
      */
@@ -86,17 +85,17 @@ public class Dia {
     }
 
     /**
-     * @return the calendario
+     * @return the configuracaoCalendario
      */
-    public Calendario getCalendario() {
-        return calendario;
+    public ConfiguracaoCalendario getConfiguracaoCalendario() {
+        return configuracaoCalendario;
     }
 
     /**
-     * @param calendario the calendario to set
+     * @param configuracaoCalendario the configuracaoCalendario to set
      */
-    public void setCalendario(Calendario calendario) {
-        this.calendario = calendario;
+    public void setConfiguracaoCalendario(ConfiguracaoCalendario configuracaoCalendario) {
+        this.configuracaoCalendario = configuracaoCalendario;
     }
     
     

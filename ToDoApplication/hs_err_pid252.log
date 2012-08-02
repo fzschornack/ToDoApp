@@ -1,0 +1,376 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00000000659eeb1f, pid=252, tid=4328
+#
+# JRE version: 7.0_04-b22
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (23.0-b21 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# V  [jvm.dll+0x9eb1f]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000000209c800):  JavaThread "main" [_thread_in_vm, id=4328, stack(0x00000000024f0000,0x00000000025f0000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x0000000000000010
+
+Registers:
+RAX=0x0000000000000000, RBX=0x000000000209c800, RCX=0x0000000000000000, RDX=0x00000000ed4294a0
+RSP=0x00000000025edec0, RBP=0x00000000025edf90, RSI=0x00000000c2a02db0, RDI=0x00000000ed4294a0
+R8 =0x000000000209c800, R9 =0x00000000ed4294a0, R10=0x00000000c2aef3f0, R11=0x0000000000000001
+R12=0x0000000000000000, R13=0x00000000c2aefc91, R14=0x00000000025edfb8, R15=0x000000000209c800
+RIP=0x00000000659eeb1f, EFLAGS=0x0000000000010206
+
+Top of Stack: (sp=0x00000000025edec0)
+0x00000000025edec0:   00000000025edfb8 00000000c2aefc91
+0x00000000025eded0:   00000000ed4294a0 00000000c2a02db0
+0x00000000025edee0:   00000000ed4294a0 00000000659c87e6
+0x00000000025edef0:   000000000209c800 00000000c2a02db0
+0x00000000025edf00:   00000000c2a02db0 0000000000000000
+0x00000000025edf10:   0000000021000021 000000000260e3c8
+0x00000000025edf20:   000000000209c800 00000000000000bd
+0x00000000025edf30:   00000000025f61f8 00000000ed4294a0
+0x00000000025edf40:   000000000260e382 00000000ed429458
+0x00000000025edf50:   00000000025edf50 00000000c2aefc91
+0x00000000025edf60:   00000000025edfb8 00000000c2af2870
+0x00000000025edf70:   0000000000000000 00000000c2aefcf8
+0x00000000025edf80:   0000000000000000 00000000025edfb0
+0x00000000025edf90:   00000000025ee010 00000000025f61f8
+0x00000000025edfa0:   0000000000000000 0000000000000000
+0x00000000025edfb0:   00000000ed429048 00000000ed429458 
+
+Instructions: (pc=0x00000000659eeb1f)
+0x00000000659eeaff:   0c c1 45 33 c0 48 83 c1 10 e9 93 34 05 00 cc cc
+0x00000000659eeb0f:   cc 48 89 5c 24 08 48 89 74 24 10 57 48 83 ec 20
+0x00000000659eeb1f:   48 8b 41 10 48 8d 59 10 49 8b f8 48 8b cb 8b f2
+0x00000000659eeb2f:   ff 90 00 01 00 00 4c 8b cf 44 8b c6 ba 01 00 00 
+
+
+Register to memory mapping:
+
+RAX=0x0000000000000000 is an unknown value
+RBX=0x000000000209c800 is a thread
+RCX=0x0000000000000000 is an unknown value
+RDX=0x00000000ed4294a0 is an oop
+java.lang.Object 
+ - klass: 'java/lang/Object'
+RSP=0x00000000025edec0 is pointing into the stack for thread: 0x000000000209c800
+RBP=0x00000000025edf90 is pointing into the stack for thread: 0x000000000209c800
+RSI=0x00000000c2a02db0 is an oop
+{instance class} 
+ - klass: {other class}
+RDI=0x00000000ed4294a0 is an oop
+java.lang.Object 
+ - klass: 'java/lang/Object'
+R8 =0x000000000209c800 is a thread
+R9 =0x00000000ed4294a0 is an oop
+java.lang.Object 
+ - klass: 'java/lang/Object'
+R10=0x00000000c2aef3f0 is an oop
+{constant pool} 
+ - klass: {other class}
+ - holder: 0x00000000c2af2440
+ - cache: 0x00000000c2af2870
+ -   1 :  : '()I'
+ -   2 :  : '()Ljava/lang/String;'
+ -   3 :  : '()V'
+ -   4 :  : '()Z'
+ -   5 :  : '(J)J'
+ -   6 :  : '(Ljava/lang/Object;)V'
+ -   7 :  : '(Ljava/lang/String;)V'
+ -   8 :  : '([B)I'
+ -   9 :  : '([BII)I'
+ -  10 :  : '<clinit>'
+ -  11 :  : '<init>'
+ -  12 :  : 'Code'
+ -  13 :  : 'Exceptions'
+ -  14 :  : 'FALSE'
+ -  15 :  : 'LineNumberTable'
+ -  16 :  : 'Ljava/lang/Boolean;'
+ -  17 :  : 'Ljava/lang/Object;'
+ -  18 :  : 'Signature'
+ -  19 :  : 'SourceFile'
+ -  20 :  : 'StackMapTable'
+ -  21 :  : 'TRUE'
+ -  22 :  : 'Z'
+ -  23 :  : 'available'
+ -  24 :  : 'booleanValue'
+ -  25 :  : 'channel'
+ -  26 :  : 'checkRead'
+ -  27 :  : 'close'
+ -  28 :  : 'close0'
+ -  29 :  : 'closeLock'
+ -  30 :  : 'closed'
+ -  31 :  : 'decrementAndGetUseCount'
+ -  32 :  : 'fd'
+ -  33 :  : 'finalize'
+ -  34 :  : 'get'
+ -  35 :  : 'getChannel'
+ -  36 :  : 'getFD'
+ -  37 :  : 'getPath'
+ -  38 :  : 'getSecurityManager'
+ -  39 :  : 'in'
+ -  40 :  : 'incrementAndGetUseCount'
+ -  41 :  : 'initIDs'
+ -  42 :  : 'isRunningFinalize'
+ -  43 :  : 'java/io/File'
+ -  44 :  : 'java/io/FileDescriptor'
+ -  45 :  : 'java/io/FileInputStream'
+ -  46 :  : 'java/io/FileNotFoundException'
+ -  47 :  : 'java/io/IOException'
+ -  48 :  : 'java/io/InputStream'
+ -  49 :  : 'java/lang/Boolean'
+ -  50 :  : 'java/lang/NullPointerException'
+ -  51 :  : 'java/lang/Object'
+ -  52 :  : 'java/lang/SecurityManager'
+ -  53 :  : 'java/lang/String'
+ -  54 :  : 'java/lang/System'
+ -  55 :  : 'java/lang/ThreadLocal'
+ -  56 :  : 'java/lang/Throwable'
+ -  57 :  : 'java/nio/channels/FileChannel'
+ -  58 :  : 'open'
+ -  59 :  : 'read'
+ -  60 :  : 'readBytes'
+ -  61 :  : 'runningFinalize'
+ -  62 :  : 'set'
+ -  63 :  : 'skip'
+ -  64 :  : 'sun/nio/ch/FileChannelImpl'
+ -  65 :  : 'java/io/File'
+ -  66 :  : 'java/io/FileDescriptor' {0xc2b1bbf0}
+ -  67 :  : 'java/io/FileInputStream' {0xc2af2440}
+ -  68 :  : 'java/io/FileNotFoundException'
+ -  69 :  : 'java/io/IOException'
+ -  70 :  : 'java/io/InputStream' {0xc2af2178}
+ -  71 :  : 'java/lang/Boolean'
+ -  72 :  : 'java/lang/NullPointerException'
+ -  73 :  : 'java/lang/Object' {0xc2a02db0}
+ -  74 :  : 'java/lang/SecurityManager'
+ -  75 :  : 'java/lang/String'
+ -  76 :  : 'java/lang/System' {0xc2a21148}
+ -  77 :  : 'java/lang/ThreadLocal' {0xc2af3d40}
+ -  78 :  : 'java/lang/Throwable'
+ -  79 :  : 'java/nio/channels/FileChannel'
+ -  80 :  : 'sun/nio/ch/FileChannelImpl'
+ -  81 :  : 'Ljava/io/FileDescriptor;'
+ -  82 :  : 'Ljava/lang/ThreadLocal;'
+ -  83 :  : 'Ljava/nio/channels/FileChannel;'
+ -  84 :  : 'Ljava/lang/ThreadLocal<Ljava/lang/Boolean;>;'
+ -  85 :  : '(Ljava/io/File;)V'
+ -  86 :  : '()Ljava/io/FileDescriptor;'
+ -  87 :  : '(Ljava/io/FileDescriptor;)V'
+ -  88 :  : '()Ljava/lang/Object;'
+ -  89 :  : '()Ljava/lang/SecurityManager;'
+ -  90 :  : '()Ljava/nio/channels/FileChannel;'
+ -  91 :  : '(Ljava/io/FileDescriptor;ZZLjava/lang/Object;)Ljava/nio/channels/FileChannel;'
+ -  92 :  : name_index=30 signature_index=22
+ -  93 :  : name_index=32 signature_index=81
+ -  94 :  : name_index=39 signature_index=81
+ -  95 :  : name_index=14 signature_index=16
+ -  96 :  : name_index=21 signature_index=16
+ -  97 :  : name_index=29 signature_index=17
+ -  98 :  : name_index=61 signature_index=82
+ -  99 :  : name_index=25 signature_index=83
+ - 100 :  : name_index=31 signature_index=1
+ - 101 :  : name_index=40 signature_index=1
+ - 102 :  : name_index=11 signature_index=3
+ - 103 :  : name_index=27 signature_index=3
+ - 104 :  : name_index=28 signature_index=3
+ - 105 :  : name_index=41 signature_index=3
+ - 106 :  : name_index=24 signature_index=4
+ - 107 :  : name_index=42 signature_index=4
+ - 108 :  : name_index=60 signature_index=9
+ - 109 :  : name_index=11 signature_index=85
+ - 110 :  : name_index=26 signature_index=87
+ - 111 :  : name_index=34 signature_index=88
+ - 112 :  : name_index=62 signature_index=6
+ - 113 :  : name_index=38 signature_index=89
+ - 114 :  : name_index=37 signature_index=2
+ - 115 :  : name_index=11 signature_index=7
+ - 116 :  : name_index=26 signature_index=7
+ - 117 :  : name_index=58 signature_index=7
+ - 118 :  : name_index=58 signature_index=91
+ - 119 :  : klass_index=66 name_and_type_index=94
+ - 120 :  : klass_index=67 name_and_type_index=92
+ - 121 :  : klass_index=67 name_and_type_index=93
+ - 122 :  : klass_index=67 name_and_type_index=97
+ - 123 :  : klass_index=67 name_and_type_index=98
+ - 124 :  : klass_index=67 name_and_type_index=99
+ - 125 :  : klass_index=71 name_and_type_index=95
+ - 126 :  : klass_index=71 name_and_type_index=96
+ - 127 :  : klass_index=65 name_and_type_index=114
+ - 128 :  : klass_index=65 name_and_type_index=115
+ - 129 :  : klass_index=66 name_and_type_index=100
+ - 130 :  : klass_index=66 name_and_type_index=101
+ - 131 :  : klass_index=66 name_and_type_index=102
+ - 132 :  : klass_index=67 name_and_type_index=103
+ - 133 :  : klass_index=67 name_and_type_index=104
+ - 134 :  : klass_index=67 name_and_type_index=105
+ - 135 :  : klass_index=67 name_and_type_index=107
+ - 136 :  : klass_index=67 name_and_type_index=108
+ - 137 :  : klass_index=67 name_and_type_index=109
+ - 138 :  : klass_index=67 name_and_type_index=117
+ - 139 :  : klass_index=69 name_and_type_index=102
+ - 140 :  : klass_index=70 name_and_type_index=102
+ - 141 :  : klass_index=71 name_and_type_index=106
+ - 142 :  : klass_index=72 name_and_type_index=102
+ - 143 :  : klass_index=73 name_and_type_index=102
+ - 144 :  : klass_index=74 name_and_type_index=110
+ - 145 :  : klass_index=74 name_and_type_index=116
+ - 146 :  : klass_index=76 name_and_type_index=113
+ - 147 :  : klass_index=77 name_and_type_index=102
+ - 148 :  : klass_index=77 name_and_type_index=111
+ - 149 :  : klass_index=77 name_and_type_index=112
+ - 150 :  : klass_index=79 name_and_type_index=103
+ - 151 :  : klass_index=80 name_and_type_index=118
+ - 152 :  : 'FileInputStream.java'
+
+R11=0x0000000000000001 is an unknown value
+R12=0x0000000000000000 is an unknown value
+R13=0x00000000c2aefc91 is an oop
+{constMethod} 
+ - klass: {other class}
+ - method:       0x00000000c2aefcf8 {method} '<init>' '(Ljava/io/File;)V' in 'java/io/FileInputStream'
+ - exceptions:   0x00000000c2a01d50
+bci_from(00000000C2AEFC91) = 17; print_codes():
+R14=0x00000000025edfb8 is pointing into the stack for thread: 0x000000000209c800
+R15=0x000000000209c800 is a thread
+
+
+Stack: [0x00000000024f0000,0x00000000025f0000],  sp=0x00000000025edec0,  free space=1015k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x9eb1f]
+j  java.io.FileReader.<init>(Ljava/io/File;)V+6
+j  sun.misc.MetaIndex.registerDirectory(Ljava/io/File;)V+27
+j  sun.misc.Launcher$ExtClassLoader$1.run()Lsun/misc/Launcher$ExtClassLoader;+19
+j  sun.misc.Launcher$ExtClassLoader$1.run()Ljava/lang/Object;+1
+v  ~StubRoutines::call_stub
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  java.io.FileInputStream.<init>(Ljava/io/File;)V+17
+j  java.io.FileReader.<init>(Ljava/io/File;)V+6
+j  sun.misc.MetaIndex.registerDirectory(Ljava/io/File;)V+27
+j  sun.misc.Launcher$ExtClassLoader$1.run()Lsun/misc/Launcher$ExtClassLoader;+19
+j  sun.misc.Launcher$ExtClassLoader$1.run()Ljava/lang/Object;+1
+v  ~StubRoutines::call_stub
+j  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedExceptionAction;)Ljava/lang/Object;+0
+j  sun.misc.Launcher$ExtClassLoader.getExtClassLoader()Lsun/misc/Launcher$ExtClassLoader;+12
+j  sun.misc.Launcher.<init>()V+4
+j  sun.misc.Launcher.<clinit>()V+15
+v  ~StubRoutines::call_stub
+j  java.lang.ClassLoader.initSystemClassLoader()V+22
+j  java.lang.ClassLoader.getSystemClassLoader()Ljava/lang/ClassLoader;+0
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000002193000 JavaThread "Finalizer" daemon [_thread_blocked, id=2236, stack(0x0000000009a20000,0x0000000009b20000)]
+  0x0000000002192000 JavaThread "Reference Handler" daemon [_thread_blocked, id=4976, stack(0x0000000009840000,0x0000000009940000)]
+=>0x000000000209c800 JavaThread "main" [_thread_in_vm, id=4328, stack(0x00000000024f0000,0x00000000025f0000)]
+
+Other Threads:
+  0x00000000086b3800 VMThread [stack: 0x0000000009720000,0x0000000009820000] [id=3308]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 16832K, used 289K [0x00000000ed400000, 0x00000000ee6c0000, 0x0000000000000000)
+  eden space 14464K, 2% used [0x00000000ed400000,0x00000000ed448588,0x00000000ee220000)
+  from space 2368K, 0% used [0x00000000ee470000,0x00000000ee470000,0x00000000ee6c0000)
+  to   space 2368K, 0% used [0x00000000ee220000,0x00000000ee220000,0x00000000ee470000)
+ ParOldGen       total 38400K, used 0K [0x00000000c7c00000, 0x00000000ca180000, 0x00000000ed400000)
+  object space 38400K, 0% used [0x00000000c7c00000,0x00000000c7c00000,0x00000000ca180000)
+ PSPermGen       total 21248K, used 1712K [0x00000000c2a00000, 0x00000000c3ec0000, 0x00000000c7c00000)
+  object space 21248K, 8% used [0x00000000c2a00000,0x00000000c2bac170,0x00000000c3ec0000)
+
+Code Cache  [0x00000000025f0000, 0x0000000002860000, 0x00000000055f0000)
+ total_blobs=141 nmethods=0 adapters=108 free_code_cache=48787Kb largest_free_block=49958080
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (1 events):
+Event: 0.024 Thread 0x000000000209c800 Threw 0x00000000ed40b9e8 at C:\jdk7u2_64p\jdk7u4\hotspot\src\share\vm\prims\jni.cpp:3993
+
+Events (10 events):
+Event: 0.036 loading class 0x0000000002124670
+Event: 0.036 loading class 0x0000000002124640
+Event: 0.036 loading class 0x000000000871cb70
+Event: 0.036 loading class 0x000000000871cb70 done
+Event: 0.036 loading class 0x0000000002124640 done
+Event: 0.036 loading class 0x0000000002124670 done
+Event: 0.036 loading class 0x000000000871cae0
+Event: 0.036 loading class 0x000000000871cdb0
+Event: 0.036 loading class 0x000000000871cdb0 done
+Event: 0.036 loading class 0x000000000871cae0 done
+
+
+Dynamic libraries:
+0x000000003fce0000 - 0x000000003fd13000 	C:\Program Files\Java\jdk1.7.0_04\jre\bin\java.exe
+0x0000000077c90000 - 0x0000000077e39000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000077a20000 - 0x0000000077b3f000 	C:\Windows\system32\kernel32.dll
+0x00000000fe410000 - 0x00000000fe47c000 	C:\Windows\system32\KERNELBASE.dll
+0x00000000ffb70000 - 0x00000000ffc4b000 	C:\Windows\system32\ADVAPI32.dll
+0x00000000ffe30000 - 0x00000000ffecf000 	C:\Windows\system32\msvcrt.dll
+0x00000000fe540000 - 0x00000000fe55f000 	C:\Windows\SYSTEM32\sechost.dll
+0x00000000fe560000 - 0x00000000fe68d000 	C:\Windows\system32\RPCRT4.dll
+0x0000000077710000 - 0x000000007780a000 	C:\Windows\system32\USER32.dll
+0x00000000ff7b0000 - 0x00000000ff817000 	C:\Windows\system32\GDI32.dll
+0x00000000fe9f0000 - 0x00000000fe9fe000 	C:\Windows\system32\LPK.dll
+0x00000000ffed0000 - 0x00000000fff99000 	C:\Windows\system32\USP10.dll
+0x00000000fcd60000 - 0x00000000fcf54000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_fa396087175ac9ac\COMCTL32.dll
+0x00000000fe4c0000 - 0x00000000fe531000 	C:\Windows\system32\SHLWAPI.dll
+0x00000000ffb40000 - 0x00000000ffb6e000 	C:\Windows\system32\IMM32.DLL
+0x00000000ffa30000 - 0x00000000ffb39000 	C:\Windows\system32\MSCTF.dll
+0x0000000070e70000 - 0x0000000070f41000 	C:\Program Files\Java\jdk1.7.0_04\jre\bin\msvcr100.dll
+0x0000000065950000 - 0x000000006606a000 	C:\Program Files\Java\jdk1.7.0_04\jre\bin\server\jvm.dll
+0x00000000fb970000 - 0x00000000fb979000 	C:\Windows\system32\WSOCK32.dll
+0x00000000fe770000 - 0x00000000fe7bd000 	C:\Windows\system32\WS2_32.dll
+0x00000000fe900000 - 0x00000000fe908000 	C:\Windows\system32\NSI.dll
+0x00000000fb900000 - 0x00000000fb93b000 	C:\Windows\system32\WINMM.dll
+0x0000000077e50000 - 0x0000000077e57000 	C:\Windows\system32\PSAPI.DLL
+0x0000000072ff0000 - 0x0000000072fff000 	C:\Program Files\Java\jdk1.7.0_04\jre\bin\verify.dll
+0x0000000070e40000 - 0x0000000070e68000 	C:\Program Files\Java\jdk1.7.0_04\jre\bin\java.dll
+0x0000000070e20000 - 0x0000000070e35000 	C:\Program Files\Java\jdk1.7.0_04\jre\bin\zip.dll
+0x00000000f6770000 - 0x00000000f6895000 	C:\Windows\system32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 
+java_command: todoapplication.ToDoApplication
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShel l\v1.0\;C:\Program Files (x86)\QuickTime Alternative\QTSystem
+USERNAME=Felipe
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 3683768k(2308452k free), swap 7365684k(4266316k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (23.0-b21) for windows-amd64 JRE (1.7.0_04-b22), built on May  2 2012 23:28:26 by "java_re" with unknown MS VC++:1600
+
+time: Tue Jul 31 20:42:58 2012
+elapsed time: 0 seconds
+

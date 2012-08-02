@@ -12,13 +12,8 @@ import java.util.logging.Logger;
  *
  * @author Felipe Zschornack
  * 
- *  Nessa classe é utilizado o padrão de projeto "Singleton" 
- * para apenas uma unica instancia da classe ter acesso ao 
- * banco de dados evitando assim problemas de desempenho.
- * 
- * LEMBRAR DE IMPLEMENTAR ESSE SINGLETON!!!!!!!!!!!1
  */
-public class ConnectorSingleton {
+public class Connector {
     
         private static Connection connection = null;
 	private static Statement statement = null;
@@ -29,9 +24,11 @@ public class ConnectorSingleton {
 	
         public static void connect() {
 		try {
-			Class.forName(JDBC_DRIVER);
-			connection = DriverManager.getConnection(DATABASE_URL,"root","petcomp");
-			statement = connection.createStatement();
+  
+                        Class.forName(JDBC_DRIVER);
+                        connection = DriverManager.getConnection(DATABASE_URL,"root","petcomp");
+                        statement = connection.createStatement();
+
 		} catch(Exception e) {
 			System.out.println("Error in method connect: " + e.getMessage());
 		}

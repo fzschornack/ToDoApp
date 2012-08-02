@@ -1,7 +1,6 @@
 package model;
 
-import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 /**
 *
@@ -18,24 +17,9 @@ public class Tarefa {
     private int duracaoTotalPrevista;
     private int duracaoTotalReal;
     private int duracaoMaximaExecucaoDia;
-    private boolean tarefaUrgente;
-    private boolean tarefaImportante;
     private TiposDeTarefaComposite tipo;
     private int prioridade;
     private Dia dia;
-
-    public Tarefa(String descricao, Date dataPrevistaInicio, Date dataPrevistaFim, int duracaoTotalPrevista, int duracaoMaximaExecucaoDia, boolean tarefaUrgente, boolean tarefaImportante, TiposDeTarefaComposite tipo, int prioridade, Dia dia) {
-        this.descricao = descricao;
-        this.dataPrevistaInicio = dataPrevistaInicio;
-        this.dataPrevistaFim = dataPrevistaFim;
-        this.duracaoTotalPrevista = duracaoTotalPrevista;
-        this.duracaoMaximaExecucaoDia = duracaoMaximaExecucaoDia;
-        this.tarefaUrgente = tarefaUrgente;
-        this.tarefaImportante = tarefaImportante;
-        this.tipo = tipo;
-        this.prioridade = prioridade;
-        this.dia = dia;
-    }
 
     public Tarefa() {
     }
@@ -74,7 +58,6 @@ public class Tarefa {
             return dataRealFim;
     }
     public void setDataRealFim(Date dataRealFim) {
-            int altera;
             this.dataRealFim = dataRealFim;
     }
     public int getDuracaoTotalPrevista() {
@@ -94,18 +77,6 @@ public class Tarefa {
     }
     public void setDuracaoMaximaExecucaoDia(int duracaoMaximaExecucaoDia) {
             this.duracaoMaximaExecucaoDia = duracaoMaximaExecucaoDia;
-    }
-    public boolean isTarefaUrgente() {
-            return tarefaUrgente;
-    }
-    public void setTarefaUrgente(boolean tarefaUrgente) {
-            this.tarefaUrgente = tarefaUrgente;
-    }
-    public boolean isTarefaImportante() {
-            return tarefaImportante;
-    }
-    public void setTarefaImportante(boolean tarefaImportante) {
-            this.tarefaImportante = tarefaImportante;
     }
     public TiposDeTarefaComposite getTipo() {
             return tipo;
@@ -144,7 +115,7 @@ public class Tarefa {
 
     @Override
     public String toString() {
-        return "Tarefa{" + "idTarefa=" + idTarefa + ", descricao=" + descricao + ", dataPrevistaInicio=" + dataPrevistaInicio + ", dataRealInicio=" + dataRealInicio + ", dataPrevistaFim=" + dataPrevistaFim + ", dataRealFim=" + dataRealFim + ", duracaoTotalPrevista=" + duracaoTotalPrevista + ", duracaoTotalReal=" + duracaoTotalReal + ", duracaoMaximaExecucaoDia=" + duracaoMaximaExecucaoDia + ", tarefaUrgente=" + tarefaUrgente + ", tarefaImportante=" + tarefaImportante + ", tipo=" + tipo.getNome() + ", prioridade=" + prioridade + ", dia=" + dia.getIdDia() + '}';
+        return "Tarefa{" + "idTarefa=" + idTarefa + ", descricao=" + descricao + ", dataPrevistaInicio=" + dataPrevistaInicio + ", dataRealInicio=" + dataRealInicio + ", dataPrevistaFim=" + dataPrevistaFim + ", dataRealFim=" + dataRealFim + ", duracaoTotalPrevista=" + duracaoTotalPrevista + ", duracaoTotalReal=" + duracaoTotalReal + ", duracaoMaximaExecucaoDia=" + duracaoMaximaExecucaoDia + ", tipo=" + tipo + ", prioridade=" + prioridade + ", dia=" + dia + '}';
     }
     
 	

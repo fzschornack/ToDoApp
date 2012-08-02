@@ -7,8 +7,6 @@ package view;
 import dao.SubtipoTarefaDAO;
 import dao.TipoTarefaDAO;
 import java.util.ArrayList;
-import javax.swing.AbstractListModel;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import model.SubtipoTarefa;
 import model.TipoTarefa;
@@ -19,7 +17,12 @@ import model.TipoTarefa;
  */
 public class comboBoxTipoTarefaModel extends DefaultComboBoxModel {
     
-    String[] tiposSubtipos = preencher();
+    String[] tiposSubtipos;
+
+    public comboBoxTipoTarefaModel() {
+        this.tiposSubtipos = preencher();
+    } 
+    
 
     String selection = null;
     
@@ -34,6 +37,7 @@ public class comboBoxTipoTarefaModel extends DefaultComboBoxModel {
         int cont = 0;
         for(TipoTarefa t: tipos) {
             string[cont] = t.getNome();
+            t.setSubtipos(SubtipoTarefaDAO.getAllIdTipo(t.getIdTipoTarefa()));
             cont++;
             for(SubtipoTarefa s: t.getSubtipos()) {
                 string[cont] = "    "+s.getNome();

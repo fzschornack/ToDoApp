@@ -17,14 +17,15 @@ import model.Tarefa;
 public class listTarefasModel extends DefaultListModel {
     
     static Date data;
+    
+    String[] descricoes;
+
+    String selection = null;
 
     public listTarefasModel(Date data) {
         this.data = data;
+        this.descricoes = preencher();
     }
-    
-    String[] descricoes = preencher();
-
-    String selection = null;
     
     public static String[] preencher() {
         

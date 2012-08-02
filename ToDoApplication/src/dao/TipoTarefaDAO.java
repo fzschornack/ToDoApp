@@ -16,18 +16,18 @@ public class TipoTarefaDAO {
      
     public static void create(TipoTarefa tipoTarefa){
         
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("INSERT INTO tipo_tarefa ( nome)"
+        Connector.connect();
+        Connector.update("INSERT INTO tipo_tarefa ( nome)"
                 + " VALUES ('" 
                 + tipoTarefa.getNome()+ "'); " );   
                 
-        ConnectorSingleton.close();    
+        Connector.close();    
     }
     
     public static TipoTarefa read(long idTipoTarefa){
         TipoTarefa tipoTarefa = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tipo_tarefa WHERE idtipo ="
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM tipo_tarefa WHERE idtipo ="
                 + idTipoTarefa + ";");
         try{
             if(resultSet.next())
@@ -35,20 +35,19 @@ public class TipoTarefaDAO {
                 tipoTarefa = new TipoTarefa();
                 tipoTarefa.setIdTipoTarefa(idTipoTarefa);
                 tipoTarefa.setNome(resultSet.getString("nome"));
-                tipoTarefa.setSubtipos(SubtipoTarefaDAO.getAllIdTipo(resultSet.getLong("idtipo")));
             }
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return tipoTarefa;
     }
     
     public static TipoTarefa read(String nome){
         TipoTarefa tipoTarefa = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tipo_tarefa WHERE nome LIKE '%"
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM tipo_tarefa WHERE nome LIKE '%"
                 + nome + "%';");
         try{
             if(resultSet.next())
@@ -56,53 +55,51 @@ public class TipoTarefaDAO {
                 tipoTarefa = new TipoTarefa();
                 tipoTarefa.setIdTipoTarefa(resultSet.getLong("idtipo"));
                 tipoTarefa.setNome(resultSet.getString("nome"));
-                tipoTarefa.setSubtipos(SubtipoTarefaDAO.getAllIdTipo(resultSet.getLong("idtipo")));
             }
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return tipoTarefa;
     }
     
     public static void update(TipoTarefa tipoTarefa){
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("UPDATE tipo_tarefa SET nome = '" 
+        Connector.connect();
+        Connector.update("UPDATE tipo_tarefa SET nome = '" 
                 + tipoTarefa.getNome() + " WHERE idtipo = " 
                 + tipoTarefa.getIdTipoTarefa()+";"); 
              
-        ConnectorSingleton.close();
+        Connector.close();
     
     } 
     
     public static void delete(long idTipoTarefa)
     {
-        ConnectorSingleton.connect();
-        ConnectorSingleton.update("DELETE FROM tarefa WHERE idtipo =" +
+        Connector.connect();
+        Connector.update("DELETE FROM tarefa WHERE idtipo =" +
                 idTipoTarefa + ";");
-        ConnectorSingleton.close();
+        Connector.close();
     }
     
     public static ArrayList<TipoTarefa> getAll(){
         ArrayList<TipoTarefa> lista = new ArrayList<TipoTarefa>();
         TipoTarefa tipoTarefa = null;
-        ConnectorSingleton.connect();
-        ResultSet resultSet = ConnectorSingleton.query("SELECT * FROM tipo_tarefa;");
+        Connector.connect();
+        ResultSet resultSet = Connector.query("SELECT * FROM tipo_tarefa;");
         try{
             while(resultSet.next())
             {
                 tipoTarefa = new TipoTarefa();
                 tipoTarefa.setIdTipoTarefa(resultSet.getLong("idtipo"));
                 tipoTarefa.setNome(resultSet.getString("nome"));
-                tipoTarefa.setSubtipos(SubtipoTarefaDAO.getAllIdTipo(resultSet.getLong("idtipo")));
                 lista.add(tipoTarefa);
             }
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
-        ConnectorSingleton.close();
+        Connector.close();
         return lista;
     }
     

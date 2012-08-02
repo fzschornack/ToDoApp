@@ -5,7 +5,10 @@
 package view;
 
 import controller.AdicionarNovoTipoController;
+import dao.TipoTarefaDAO;
+import java.util.ArrayList;
 import javax.swing.*;
+import model.TipoTarefa;
 
 /**
  *
@@ -36,6 +39,7 @@ public class AdicionarNovoTipo extends javax.swing.JFrame {
         jRBSubtipo = new javax.swing.JRadioButton();
         btnAdicionarTipo = new javax.swing.JButton();
         jRBTipo = new javax.swing.JRadioButton();
+        cbTiposTarefa = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,6 +62,15 @@ public class AdicionarNovoTipo extends javax.swing.JFrame {
         jRBTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRBTipo.setText("Tipo");
 
+        cbTiposTarefa.setModel(new comboBoxTipoTarefaModel());
+        ArrayList<TipoTarefa> tipos;
+        tipos = TipoTarefaDAO.getAll();
+        int cont = 0;
+        for(TipoTarefa t: tipos) {
+            cbTiposTarefa.insertItemAt(t.getNome(),cont);
+            cont++;
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,10 +88,12 @@ public class AdicionarNovoTipo extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtTipo)
-                                    .addComponent(txtSubTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))))
-                        .addGap(0, 144, Short.MAX_VALUE))
+                                    .addComponent(txtSubTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbTiposTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(321, Short.MAX_VALUE)
+                        .addContainerGap(450, Short.MAX_VALUE)
                         .addComponent(btnAdicionarTipo)))
                 .addContainerGap())
         );
@@ -94,7 +109,8 @@ public class AdicionarNovoTipo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSubTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRBSubtipo))
+                    .addComponent(jRBSubtipo)
+                    .addComponent(cbTiposTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
                 .addComponent(btnAdicionarTipo)
                 .addContainerGap())
@@ -152,6 +168,7 @@ public class AdicionarNovoTipo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarTipo;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox cbTiposTarefa;
     private javax.swing.JRadioButton jRBSubtipo;
     private javax.swing.JRadioButton jRBTipo;
     private javax.swing.JLabel lblAdicionarTipo;
@@ -185,6 +202,10 @@ public class AdicionarNovoTipo extends javax.swing.JFrame {
 
     public JTextField getTxtTipo() {
         return txtTipo;
+    }
+
+    public JComboBox getCbTiposTarefa() {
+        return cbTiposTarefa;
     }
 
     

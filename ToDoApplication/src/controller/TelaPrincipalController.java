@@ -9,6 +9,7 @@ import dao.DiaDAO;
 import dao.TarefaDAO;
 import dao.TipoTarefaDAO;
 import java.sql.Date;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Calendario;
 import model.ConfiguracaoCalendario;
@@ -35,13 +36,14 @@ public class TelaPrincipalController {
     }
     
     public void inicializarCalendario() {
-       
+        if(ConfiguracaoCalendarioDAO.read(1) == null)
+            //JOptionPane.showMessageDialog(telaPrincipal, "Calendário ainda não foi configurado.\n Por favor, preencha a aba \"Configurar Calendário.\" ");
         try {
             this.configCalendario = ConfiguracaoCalendarioDAO.read(1);
-            this.calendario = new Calendario();
+            this.calendario = Calendario.getInstancia();
             this.calendario.setConfigCal(configCalendario);
             this.calendario.setDias(DiaDAO.getAll());
-            this.calendario.setTipos(TipoTarefaDAO.getAll());
+            
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Novo Calendario.");
@@ -61,13 +63,28 @@ public class TelaPrincipalController {
              
         Date data = new Date(telaPrincipal.getDpCalendario().getDate().getTime());
         
-        telaPrincipal.getListTarefas().setModel(new listTarefasModel(data));
+        ArrayList<Tarefa> tarefas;
+
+        tarefas = TarefaDAO.getAll();
+
+        telaPrincipal.getListTarefasModel().removeAllElements();
+        for(Tarefa t: tarefas) {
+            if(t.getDia().getData().equals(data)) {
+                if(t.getDataRealFim().after(new Date(System.currentTimeMillis()))) {
+                    telaPrincipal.getListTarefasModel().addElement(t.getDescricao());
+                }
+            }
+        }
+        
         telaPrincipal.pack();
     }
     
     public void concluirTarefa() {
         if(JOptionPane.showConfirmDialog(telaPrincipal, "Deseja concluir a tarefa?") == 0) {
-            telaPrincipal.getListTarefas().getSelectedValue();
+            Tarefa tarefa = new Tarefa();
+            tarefa = TarefaDAO.read(telaPrincipal.getListTarefas().getSelectedValue().toString());
+            tarefa.setDataRealFim(new Date(System.currentTimeMillis()));
+            TarefaDAO.update(tarefa);
         }
     }
     

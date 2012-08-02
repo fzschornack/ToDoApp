@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.Calendario;
 import model.Dia;
 import model.Tarefa;
 import view.TelaPrincipal;
@@ -33,18 +35,18 @@ public class AdicionarTarefaController {
             tarefa.setDataPrevistaFim(formatador(telaPrincipal.getFtxfDataPrevistaFim().getText()));
             tarefa.setDuracaoTotalPrevista(Integer.parseInt(telaPrincipal.getTxtDuracaoTotalPrevista().getText()));
             tarefa.setDuracaoMaximaExecucaoDia(Integer.parseInt(telaPrincipal.getTxtDuracaoMaximaExecucaoPorDia().getText()));
-            tarefa.setTarefaImportante(telaPrincipal.getjCBImportante().isSelected());
-            tarefa.setTarefaUrgente(telaPrincipal.getjCBUrgente().isSelected());
             tarefa.setDataRealInicio(new Date(System.currentTimeMillis()));
             tarefa.setDataRealFim(formatador("01/01/2099"));
-            if(TipoTarefaDAO.read(telaPrincipal.getCbTiposTarefa().getSelectedItem().toString()) != null)
+            if(TipoTarefaDAO.read(telaPrincipal.getCbTiposTarefa().getSelectedItem().toString()) != null) {
                 tarefa.setTipo(TipoTarefaDAO.read(telaPrincipal.getCbTiposTarefa().getSelectedItem().toString()));
-            else
-                tarefa.setTipo(SubtipoTarefaDAO.read(telaPrincipal.getCbTiposTarefa().getSelectedItem().toString()));
+            }
+            else {
+                tarefa.setTipo(SubtipoTarefaDAO.read(telaPrincipal.getCbTiposTarefa().getSelectedItem().toString().substring(4)));
+            }
             int prioridade = 0;
             if(telaPrincipal.getjCBUrgente().isSelected())
                 prioridade += 70;
-            if(telaPrincipal.getjCBUrgente().isSelected())
+            if(telaPrincipal.getjCBImportante().isSelected())
                 prioridade += 30;
             tarefa.setPrioridade(prioridade);
             
@@ -55,8 +57,8 @@ public class AdicionarTarefaController {
         int existeDia = 0;
         Dia dia = null;
         
-        if(telaPrincipal.getCalendarioPrincipal().getDias() != null) {
-            for(Dia d: telaPrincipal.getCalendarioPrincipal().getDias()) {
+        if(Calendario.getInstancia().getDias() != null) {
+            for(Dia d: Calendario.getInstancia().getDias()) {
                 if(d.getData().equals(tarefa.getDataPrevistaInicio())) {
                     existeDia = 1;
                     dia = d;
@@ -72,11 +74,11 @@ public class AdicionarTarefaController {
             dia.setData(tarefa.getDataPrevistaInicio());
             DiaDAO.create(dia);
             tarefa.setDia(DiaDAO.read(new Date(dia.getData().getTime())));
-            telaPrincipal.getCalendarioPrincipal().getDias().add(tarefa.getDia());
-            System.out.println("Foi a chibata!!");
+            Calendario.getInstancia().getDias().add(tarefa.getDia());
         }
         
         TarefaDAO.create(tarefa);
+        JOptionPane.showMessageDialog(telaPrincipal, "Tarefa adicionada com sucesso!");
         
     }
     

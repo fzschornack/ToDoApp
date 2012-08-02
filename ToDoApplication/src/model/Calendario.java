@@ -4,42 +4,39 @@
  */
 package model;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
  * @author Felipe Zschornack
+ * 
+ *  Nessa classe é utilizado o padrão de projeto Singleton, já que deve existir somente uma instacia de Calendario no programa.
+ * 
  */
 public class Calendario {
     
-    private long idCalendario;
     private ConfiguracaoCalendario configCal;
     private ArrayList<Dia> dias;
-    private ArrayList<TipoTarefa> tipos;
+    private static Calendario instancia = new Calendario();
+    private int tipoEscalonamento;
 
-    public Calendario() {
+    private Calendario() {
         this.dias = new ArrayList<Dia>();
-        this.tipos = new ArrayList<TipoTarefa>();
+        this.tipoEscalonamento = 1;
     }
     
-    
-    
-    /**
-     * @return the idCalendario
-     */
-    public long getIdCalendario() {
-        return idCalendario;
+    public static Calendario getInstancia() {
+        return instancia;
     }
 
-    /**
-     * @param idCalendario the idCalendario to set
-     */
-    public void setIdCalendario(long idCalendario) {
-        this.idCalendario = idCalendario;
+    public int getTipoEscalonamento() {
+        return tipoEscalonamento;
     }
 
+    public void setTipoEscalonamento(int tipoEscalonamento) {
+        this.tipoEscalonamento = tipoEscalonamento;
+    }
+    
     /**
      * @return the dias
      */
@@ -66,22 +63,6 @@ public class Calendario {
      */
     public void setConfigCal(ConfiguracaoCalendario configCal) {
         this.configCal = configCal;
-    }
-
-    /**
-     * @return the tipos
-     */
-    public ArrayList<TipoTarefa> getTipos() {
-        return tipos;
-    }
-
-    /**
-     * @param tipos the tipos to set
-     */
-    public void setTipos(ArrayList<TipoTarefa> tipos) {
-        this.tipos = tipos;
-    }
-    
-    
+    } 
     
 }
