@@ -5,11 +5,12 @@
 package view;
 
 import controller.EditarTarefaController;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import model.Tarefa;
+import dao.SubtipoTarefaDAO;
+import dao.TipoTarefaDAO;
+import java.util.ArrayList;
+import javax.swing.*;
+import model.SubtipoTarefa;
+import model.TipoTarefa;
 
 /**
  *
@@ -42,9 +43,7 @@ public class EditarTarefa extends javax.swing.JFrame {
         lblDescricao = new javax.swing.JLabel();
         txtDescricao = new javax.swing.JTextField();
         lblDataPrevistaInicio = new javax.swing.JLabel();
-        txtDataPrevistaInicio = new javax.swing.JTextField();
         lblDataPrevistaFim = new javax.swing.JLabel();
-        txtDataPrevistaFim = new javax.swing.JTextField();
         lblDuracaoTotalPrevista = new javax.swing.JLabel();
         txtDuracaoTotalPrevista = new javax.swing.JTextField();
         lblDuracaoMaximaExecucaoPorDia = new javax.swing.JLabel();
@@ -53,8 +52,12 @@ public class EditarTarefa extends javax.swing.JFrame {
         jCBImportante = new javax.swing.JCheckBox();
         btnExcluir = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        txfTipoTarefa = new javax.swing.JTextField();
+        lblTipoDaTarefa = new javax.swing.JLabel();
+        cbTiposTarefa = new javax.swing.JComboBox();
+        btnAdicionarTipo = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        ftxtDataPrevistaFim = new javax.swing.JFormattedTextField();
+        ftxtDataPrevistaInicio = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,8 +101,39 @@ public class EditarTarefa extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Tipo da Tarefa");
+        lblTipoDaTarefa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTipoDaTarefa.setText("Tipo da Tarefa");
+
+        cbTiposTarefa.setModel(new comboBoxTipoTarefaModel());
+        cbTiposTarefa.removeAllItems();
+        ArrayList<TipoTarefa> tipos;
+        tipos = TipoTarefaDAO.getAll();
+        int cont = 0;
+        for(TipoTarefa t: tipos) {
+            cbTiposTarefa.insertItemAt(t.getNome(),cont);
+            t.setSubtipos(SubtipoTarefaDAO.getAllIdTipo(t.getIdTipoTarefa()));
+            cont++;
+            for(SubtipoTarefa s: t.getSubtipos()) {
+                cbTiposTarefa.insertItemAt("    "+s.getNome(),cont);
+                cont++;
+            }
+        }
+
+        btnAdicionarTipo.setText("Adicionar Tipo");
+
+        btnAtualizar.setText("Atualizar");
+
+        try {
+            ftxtDataPrevistaFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            ftxtDataPrevistaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,10 +141,15 @@ public class EditarTarefa extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSalvar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(177, 177, 177)
                         .addComponent(lblDadosDaTarefa)
-                        .addGap(0, 190, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,23 +162,22 @@ public class EditarTarefa extends javax.swing.JFrame {
                                     .addComponent(lblDuracaoMaximaExecucaoPorDia)
                                     .addComponent(jCBUrgente)
                                     .addComponent(jCBImportante))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtDataPrevistaInicio)
                                     .addComponent(txtDuracaoTotalPrevista)
                                     .addComponent(txtDescricao)
-                                    .addComponent(txtDataPrevistaFim)
-                                    .addComponent(txtDuracaoMaximaExecucaoPordia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
+                                    .addComponent(txtDuracaoMaximaExecucaoPordia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(ftxtDataPrevistaFim, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ftxtDataPrevistaInicio, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txfTipoTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalvar)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbTiposTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTipoDaTarefa)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAdicionarTipo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnAtualizar)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -153,12 +191,12 @@ public class EditarTarefa extends javax.swing.JFrame {
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDataPrevistaInicio)
-                    .addComponent(txtDataPrevistaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
+                    .addComponent(ftxtDataPrevistaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDataPrevistaInicio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDataPrevistaFim)
-                    .addComponent(txtDataPrevistaFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftxtDataPrevistaFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDuracaoTotalPrevista)
@@ -172,10 +210,14 @@ public class EditarTarefa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCBImportante)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTipoDaTarefa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbTiposTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txfTipoTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                    .addComponent(btnAdicionarTipo)
+                    .addComponent(btnAtualizar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
                     .addComponent(btnSalvar))
@@ -186,7 +228,7 @@ public class EditarTarefa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        editarTarefaController.salvar();
+        editarTarefaController.salvar(descricaoTarefa);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -235,24 +277,34 @@ public class EditarTarefa extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionarTipo;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox cbTiposTarefa;
+    private javax.swing.JFormattedTextField ftxtDataPrevistaFim;
+    private javax.swing.JFormattedTextField ftxtDataPrevistaInicio;
     private javax.swing.JCheckBox jCBImportante;
     private javax.swing.JCheckBox jCBUrgente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblDadosDaTarefa;
     private javax.swing.JLabel lblDataPrevistaFim;
     private javax.swing.JLabel lblDataPrevistaInicio;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblDuracaoMaximaExecucaoPorDia;
     private javax.swing.JLabel lblDuracaoTotalPrevista;
-    private javax.swing.JTextField txfTipoTarefa;
-    private javax.swing.JTextField txtDataPrevistaFim;
-    private javax.swing.JTextField txtDataPrevistaInicio;
+    private javax.swing.JLabel lblTipoDaTarefa;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtDuracaoMaximaExecucaoPordia;
     private javax.swing.JTextField txtDuracaoTotalPrevista;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnAdicionarTipo() {
+        return btnAdicionarTipo;
+    }
+
+    public JButton getBtnAtualizar() {
+        return btnAtualizar;
+    }
 
     public JButton getBtnExcluir() {
         return btnExcluir;
@@ -262,16 +314,32 @@ public class EditarTarefa extends javax.swing.JFrame {
         return btnSalvar;
     }
 
+    public JComboBox getCbTiposTarefa() {
+        return cbTiposTarefa;
+    }
+
+    public String getDescricaoTarefa() {
+        return descricaoTarefa;
+    }
+
+    public EditarTarefaController getEditarTarefaController() {
+        return editarTarefaController;
+    }
+
+    public JFormattedTextField getFtxtDataPrevistaFim() {
+        return ftxtDataPrevistaFim;
+    }
+
+    public JFormattedTextField getFtxtDataPrevistaInicio() {
+        return ftxtDataPrevistaInicio;
+    }
+
     public JCheckBox getjCBImportante() {
         return jCBImportante;
     }
 
     public JCheckBox getjCBUrgente() {
         return jCBUrgente;
-    }
-
-    public JLabel getjLabel1() {
-        return jLabel1;
     }
 
     public JLabel getLblDadosDaTarefa() {
@@ -298,16 +366,8 @@ public class EditarTarefa extends javax.swing.JFrame {
         return lblDuracaoTotalPrevista;
     }
 
-    public JTextField getTxfTipoTarefa() {
-        return txfTipoTarefa;
-    }
-
-    public JTextField getTxtDataPrevistaFim() {
-        return txtDataPrevistaFim;
-    }
-
-    public JTextField getTxtDataPrevistaInicio() {
-        return txtDataPrevistaInicio;
+    public JLabel getLblTipoDaTarefa() {
+        return lblTipoDaTarefa;
     }
 
     public JTextField getTxtDescricao() {
@@ -321,5 +381,10 @@ public class EditarTarefa extends javax.swing.JFrame {
     public JTextField getTxtDuracaoTotalPrevista() {
         return txtDuracaoTotalPrevista;
     }
+
+   
+
+  
+   
 
 }
